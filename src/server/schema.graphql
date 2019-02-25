@@ -1,0 +1,78 @@
+type Query {
+  events: [Event!]!
+  event(id: ID!): Event
+  users: [User!]!
+  user(id: ID!): User
+  talks: [Talk!]!
+  talk(id: ID!): Talk
+}
+
+type Mutation {
+  createEvent(name: String!): Event
+  attendEvent(eventId: String!): Event
+  signup(name: String!, email: String!, password: String!): AuthPayload
+  login(email: String!, password: String!): AuthPayload
+}
+
+type Subscription {
+  updateEvent: Event
+}
+
+type User {
+  id: ID!
+  name: String!
+  email: String!
+  description: String
+  socials: [SocialProfile!]!
+}
+
+type Event {
+  id: ID!
+  name: String!
+  attendees: [User!]!
+  organizer: User!
+  talks: [Talk!]
+  venue: Venue
+  timeStart: Int
+  timeEnd: Int
+}
+
+type AuthPayload {
+  token: String
+  user: User
+}
+
+type Talk {
+  id: ID!
+  title: String!
+  description: String!
+  speaker: User!
+  length: Int!
+  remarks: String
+}
+
+type SocialProfile {
+  type: SocialNetworks!
+  value: String!
+}
+
+enum SocialNetworks {
+  FACEBOOK
+  TWITTER
+  GITHUB
+  LINKEDIN
+  PERSONAL
+}
+
+type Venue {
+  id: ID!
+  name: String!
+  address: String!
+  googPlaceId: String
+  coords: Coordinates
+}
+
+type Coordinates {
+  x: Float!
+  y: Float!
+}

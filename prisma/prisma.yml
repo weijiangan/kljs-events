@@ -1,0 +1,11 @@
+datamodel: datamodel.prisma
+
+generate:
+  - generator: javascript-client
+    output: ../src/generated/prisma-client
+
+endpoint: http://localhost:4466
+
+hooks:
+  post-deploy:
+    - prisma generate

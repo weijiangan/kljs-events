@@ -1,0 +1,57 @@
+type User {
+  id: ID! @unique
+  createdAt: DateTime!
+  name: String!
+  middleName: String
+  email: String! @unique
+  password: String!
+  description: String
+  socials: [SocialProfile!]!
+}
+
+type Event {
+  id: ID! @unique
+  name: String!
+  attendees: [User!]! @relation(name: "Attendees")
+  organizer: User! @relation(name: "Organizer")
+  talks: [Talk!]!
+  venue: Venue
+  timeStart: Int
+  timeEnd: Int
+}
+
+type Talk {
+  id: ID! @unique
+  title: String!
+  description: String!
+  createdAt: DateTime!
+  speaker: User!
+  length: Int!
+  remarks: String
+}
+
+type SocialProfile {
+  type: SocialNetworks!
+  value: String!
+}
+
+enum SocialNetworks {
+  FACEBOOK,
+  TWITTER,
+  GITHUB,
+  LINKEDIN,
+  PERSONAL
+}
+
+type Venue {
+  id: ID! @unique
+  name: String!
+  address: String!
+  googPlaceId: String
+  coords: Coordinates
+}
+
+type Coordinates {
+  x: Float!
+  y: Float!
+}

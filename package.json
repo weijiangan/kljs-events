@@ -1,0 +1,33 @@
+{
+  "name": "kljs-events",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start:dev": "node ./src/server/index2.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "graphql-yoga": "^1.17.4",
+    "jsonwebtoken": "^8.5.0",
+    "prisma-client-lib": "^1.26.6",
+    "react": "16.8.2",
+    "react-dom": "16.8.2"
+  },
+  "devDependencies": {
+    "@hot-loader/react-dom": "16.8.2",
+    "babel-cli": "6",
+    "babel-core": "^6.26.3",
+    "babel-jest": "^23.6.0",
+    "babel-loader": "7",
+    "babel-plugin-rewire": "^1.2.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react-app": "3",
+    "jest": "^24.1.0",
+    "react-hot-loader": "^4.7.1",
+    "supertest": "^3.4.2",
+    "webpack": "^4.29.5",
+    "webpack-dev-middleware": "^3.6.0",
+    "webpack-hot-middleware": "^2.24.3"
+  }
+}
