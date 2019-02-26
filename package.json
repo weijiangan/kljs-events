@@ -13,6 +13,7 @@
     "prisma-client-lib": "^1.26.6",
     "react": "16.8.2",
     "react-dom": "16.8.2"
+    "style-loader": "^0.23.1"
   },
   "devDependencies": {
     "@hot-loader/react-dom": "16.8.2",
@@ -23,6 +24,7 @@
     "babel-plugin-rewire": "^1.2.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react-app": "3",
+    "css-loader": "^2.1.0",
     "jest": "^24.1.0",
     "react-hot-loader": "^4.7.1",
     "supertest": "^3.4.2",
