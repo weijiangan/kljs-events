@@ -30,7 +30,12 @@ const server = new GraphQLServer({
 });
 
 server.express.set("port", process.env.PORT || 4000);
-server.start({ playground: "/graphql" }, () =>
+const serverConfig = {
+  endpoint: "/graphql",
+  playground: "/graphql"
+};
+
+server.start(serverConfig, () =>
   console.log(
     `Server is running on http://localhost:${server.express.get("port")}`
   )

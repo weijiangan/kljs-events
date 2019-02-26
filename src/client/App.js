@@ -8,7 +8,7 @@ import { format } from "date-fns";
 import styles from "./app.css";
 
 const client = new ApolloClient({
-  uri: "http://localhost:4000"
+  uri: "http://localhost:4000/graphql"
 });
 
 const GET_LATEST_EVENT = gql`
