@@ -17,6 +17,7 @@
     "react": "16.8.2",
     "react-apollo": "^2.4.1",
     "react-dom": "16.8.2",
+    "react-vertical-timeline-component": "^2.3.1",
     "style-loader": "^0.23.1"
   },
   "devDependencies": {
