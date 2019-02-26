@@ -48,9 +48,27 @@ function attendEvent(parent, args, context, info) {
   });
 }
 
+function updateEvent(parent, args, context, info) {
+  const { eventId, venue, talks, ...rest } = args;
+  const data = { ...rest };
+  if (venue) {
+    data.venue = {
+      upsert: {
+        create: { ...venue },
+        update: { ...venue }
+      }
+    };
+  }
+  return context.prisma.updateEvent({
+    data,
+    where: { id: args.eventId }
+  });
+}
+
 module.exports = {
   signup,
   login,
   createEvent,
-  attendEvent
+  attendEvent,
+  updateEvent
 };

@@ -9,6 +9,14 @@ type Query {
 
 type Mutation {
   createEvent(name: String!): Event
+  updateEvent(
+    eventId: String!
+    name: String
+    talks: TalkInput
+    venue: VenueInput
+    timeStart: Int
+    timeEnd: Int
+  ): Event
   attendEvent(eventId: String!): Event
   signup(name: String!, email: String!, password: String!): AuthPayload
   login(email: String!, password: String!): AuthPayload
@@ -24,6 +32,13 @@ type User {
   email: String!
   description: String
   socials: [SocialProfile!]!
+}
+
+input UserInput {
+  id: ID!
+  name: String!
+  email: String!
+  description: String
 }
 
 type Event {
@@ -51,6 +66,14 @@ type Talk {
   remarks: String
 }
 
+input TalkInput {
+  title: String!
+  description: String!
+  speaker: UserInput!
+  length: Int!
+  remarks: String
+}
+
 type SocialProfile {
   type: SocialNetworks!
   value: String!
@@ -72,7 +95,19 @@ type Venue {
   coords: Coordinates
 }
 
+input VenueInput {
+  name: String!
+  address: String!
+  googPlaceId: String
+  coords: CoordinatesInput
+}
+
 type Coordinates {
+  x: Float!
+  y: Float!
+}
+
+input CoordinatesInput {
   x: Float!
   y: Float!
 }

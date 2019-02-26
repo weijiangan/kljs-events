@@ -7,12 +7,16 @@
     "start:dev": "node ./src/server/index2.js"
   },
   "dependencies": {
+    "apollo-boost": "^0.1.28",
     "bcryptjs": "^2.4.3",
+    "date-fns": "^1.30.1",
+    "graphql": "^14.1.1",
     "graphql-yoga": "^1.17.4",
     "jsonwebtoken": "^8.5.0",
     "prisma-client-lib": "^1.26.6",
     "react": "16.8.2",
-    "react-dom": "16.8.2"
+    "react-apollo": "^2.4.1",
+    "react-dom": "16.8.2",
     "style-loader": "^0.23.1"
   },
   "devDependencies": {
