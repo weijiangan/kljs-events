@@ -12,11 +12,13 @@ type Mutation {
   updateEvent(
     eventId: String!
     name: String
-    talks: TalkInput
+    talks: [ID!]
     venue: VenueInput
     timeStart: Int
     timeEnd: Int
   ): Event
+  createTalk(data: TalkInput!): Talk
+  updateTalk(data: TalkInput!): Talk
   attendEvent(eventId: String!): Event
   signup(name: String!, email: String!, password: String!): AuthPayload
   login(email: String!, password: String!): AuthPayload
@@ -35,10 +37,8 @@ type User {
 }
 
 input UserInput {
-  id: ID!
-  name: String!
-  email: String!
-  description: String
+  id: ID
+  email: String
 }
 
 type Event {

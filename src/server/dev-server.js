@@ -5,21 +5,18 @@ const webpackDevMiddleware = require("webpack-dev-middleware");
 const webpackHotMiddleware = require("webpack-hot-middleware");
 const config = require("../../config/webpack.dev");
 
-const app = express();
+const router = express.Router();
 const compiler = webpack(config);
 
-app.use(
+router.use(
   webpackDevMiddleware(compiler, {
     logLevel: "warn",
     publicPath: config.output.publicPath
   })
 );
 
-app.use(webpackHotMiddleware(compiler));
+router.use(webpackHotMiddleware(compiler));
 
-app.use("/", express.static(path.join(__dirname, "..", "..", "dist")));
+router.use("/", express.static(path.join(__dirname, "..", "..", "dist")));
 
-app.set("port", process.env.PORT || 3000);
-app.listen(app.get("port"), () => {
-  console.log(`Server started: http://localhost:${app.get("port")}/`);
-});
+module.exports = router;

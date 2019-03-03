@@ -65,10 +65,25 @@ function updateEvent(parent, args, context, info) {
   });
 }
 
+function createTalk(parent, args, context, info) {
+  const { speaker, ...rest } = args.data;
+  console.log(rest);
+
+  return context.prisma.createTalk({
+    ...rest,
+    speaker: {
+      connect: {
+        ...speaker
+      }
+    }
+  });
+}
+
 module.exports = {
   signup,
   login,
   createEvent,
   attendEvent,
-  updateEvent
+  updateEvent,
+  createTalk
 };

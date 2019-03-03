@@ -7,6 +7,7 @@ const Event = require("./resolvers/Event");
 const Talk = require("./resolvers/Talk");
 const User = require("./resolvers/User");
 const Venue = require("./resolvers/Venue");
+const devServer = require("./dev-server");
 
 const resolvers = {
   Query,
@@ -33,6 +34,8 @@ const serverConfig = {
   endpoint: "/graphql",
   playground: "/graphql"
 };
+
+server.express.use("/", devServer);
 
 server.start(serverConfig, () =>
   console.log(

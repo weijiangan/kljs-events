@@ -1,25 +1,105 @@
+:root {
+  --dark: rgb(54, 54, 51);
+}
+
 body {
   margin: 0;
-  color: rgb(54, 54, 51);
+  color: var(--dark);
   background-color: rgb(234, 218, 91);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
     Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
+.flex {
+  display: flex;
+}
+
+.flexCenter {
+  composes: flex;
+  align-items: center;
+}
+
+.container {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
 .topBar {
+  box-sizing: border-box;
+  color: white;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.7), transparent);
+  width: 100vw;
+  composes: flex;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
   padding: 1rem;
-  box-shadow: 0 0 30px 0 rgba(125, 125, 125, 0.4);
+  z-index: 2;
+  font-weight: 700;
+  letter-spacing: 0.3rem;
+  font-size: 2.5rem;
+  opacity: 0.95;
+  text-shadow: 0 3px 10px black;
+  /* box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.7); */
 }
 
 .hero {
-  padding: 1rem;
 }
 
 .heroTitle {
   font-size: 1.5rem;
   font-weight: 600;
+  line-height: 1.1;
 }
 
-.bitch {
-  color: red;
+.iconBullet {
+  opacity: 0.7;
+  width: 2rem;
+  flex: 0 0 auto;
+}
+
+.picture {
+  background: linear-gradient(
+      180deg,
+      transparent,
+      rgba(0, 0, 0, 0.4) 75%,
+      rgba(0, 0, 0, 0.8) 100%
+    ),
+    top center / cover no-repeat url("../assets/kl.jpg");
+}
+
+.topButton {
+  border: none;
+  color: white;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+  background-image: linear-gradient(340deg, #ff8a00, #da1b60);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+  text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+  letter-spacing: 0.03rem;
+}
+
+.row {
+  composes: flex;
+  margin: 1rem;
+}
+
+.col {
+  box-sizing: border-box;
+  padding: 0.1rem 0.1rem;
+  flex: 1 0 33.333%;
+  display: flex;
+  justify-content: center;
+}
+
+.tab {
+  padding: 0.4rem 0.8rem;
+  border-radius: 1rem;
+}
+
+.tabActive {
+  composes: tab;
+  color: white;
+  background-color: var(--dark);
 }
