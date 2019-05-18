@@ -1,6 +1,7 @@
 type User {
-  id: ID! @unique
-  createdAt: DateTime!
+  id: ID! @id
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
   name: String!
   middleName: String
   email: String! @unique
@@ -10,7 +11,7 @@ type User {
 }
 
 type Event {
-  id: ID! @unique
+  id: ID! @id
   name: String!
   attendees: [User!]! @relation(name: "Attendees")
   organizer: User! @relation(name: "Organizer")
@@ -18,21 +19,27 @@ type Event {
   venue: Venue
   timeStart: Int
   timeEnd: Int
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
 }
 
 type Talk {
-  id: ID! @unique
+  id: ID! @id
   title: String!
   description: String!
-  createdAt: DateTime!
   speaker: User!
   length: Int!
   remarks: String
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
 }
 
 type SocialProfile {
+  id: ID! @id
   type: SocialNetworks!
-  value: String!
+  value: String! @unique
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
 }
 
 enum SocialNetworks {
@@ -44,14 +51,19 @@ enum SocialNetworks {
 }
 
 type Venue {
-  id: ID! @unique
+  id: ID! @id
   name: String!
   address: String!
   googPlaceId: String
   coords: Coordinates
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
 }
 
 type Coordinates {
+  id: ID! @id
   x: Float!
   y: Float!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
 }
