@@ -3,6 +3,7 @@ import { hot } from "react-hot-loader/root";
 import { Query, Mutation } from "react-apollo";
 import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import gql from "graphql-tag";
 import { format } from "date-fns";
 import {
@@ -19,7 +20,7 @@ import styles from "./app.css";
 library.add(faClock, faMapMarkedAlt);
 
 const client = new ApolloClient({
-  uri: "http://192.168.0.164:4000/graphql"
+  uri: "http://localhost:4000/graphql"
 });
 
 const GET_LATEST_EVENT = gql`
@@ -41,10 +42,11 @@ const GET_LATEST_EVENT = gql`
         id
         title
         speaker {
+          id
           name
           email
-          description
         }
+        description
         length
         remarks
       }
@@ -67,10 +69,16 @@ const FUCK = gql`
 `;
 
 const App = () => (
+  <Router>
+    <Content />
+  </Router>
+);
+
+const Content = () => (
   <ApolloProvider client={client}>
     <div>
       <div className={styles.topBar}>
-        <div>KLJS</div>
+        <div className={styles.logo}>KLJS</div>
         <div className={styles.flexCenter}>
           <button type="button" className={styles.topButton}>
             Support us!
@@ -150,10 +158,14 @@ const App = () => (
                         color: "#fff"
                       }}
                     >
-                      <h3 className="vertical-timeline-element-title">
-                        {talk.title}
-                      </h3>
-                      <h4>{talk.speaker.name}</h4>
+                      <Link to={`talk/${talk.id}`}>
+                        <h3 className={styles.timelineTitle}>{talk.title}</h3>
+                      </Link>
+                      <Link to={`talk/${talk.speaker.id}`}>
+                        <h4 className={styles.timelineSubtitle}>
+                          {talk.speaker.name}
+                        </h4>
+                      </Link>
                       <p>{talk.description}</p>
                     </VerticalTimelineElement>
                   ))}
