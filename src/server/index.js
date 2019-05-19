@@ -7,6 +7,7 @@ const Event = require("./resolvers/Event");
 const Talk = require("./resolvers/Talk");
 const User = require("./resolvers/User");
 const Venue = require("./resolvers/Venue");
+const EventActivity = require("./resolvers/EventActivity");
 const devServer = require("./dev-server");
 
 const resolvers = {
@@ -16,7 +17,8 @@ const resolvers = {
   Event,
   Talk,
   User,
-  Venue
+  Venue,
+  EventActivity
 };
 
 const server = new GraphQLServer({

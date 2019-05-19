@@ -10,13 +10,13 @@ function attendees(parent, args, context) {
   return context.prisma.event({ id: parent.id }).attendees();
 }
 
-function talks(parent, args, context) {
-  return context.prisma.event({ id: parent.id }).talks();
+function agenda(parent, args, context) {
+  return context.prisma.event({ id: parent.id }).agenda();
 }
 
 module.exports = {
   organizer,
   attendees,
-  talks,
+  agenda,
   venue
 };
