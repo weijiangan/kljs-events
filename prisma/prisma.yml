@@ -2,7 +2,7 @@ datamodel: datamodel.prisma
 
 generate:
   - generator: javascript-client
-    output: ../src/generated/prisma-client
+    output: ../src/server/generated/prisma-client
 
 endpoint: http://localhost:4466
 
