@@ -5,7 +5,7 @@ var typeDefs = require("./prisma-schema").typeDefs;
 
 var models = [
   {
-    name: "Coordinates",
+    name: "User",
     embedded: false
   },
   {
@@ -13,11 +13,15 @@ var models = [
     embedded: false
   },
   {
-    name: "SocialNetworks",
+    name: "EventActivity",
     embedded: false
   },
   {
-    name: "SocialProfile",
+    name: "Activity",
+    embedded: false
+  },
+  {
+    name: "ActivityType",
     embedded: false
   },
   {
@@ -25,11 +29,19 @@ var models = [
     embedded: false
   },
   {
-    name: "User",
+    name: "SocialProfile",
+    embedded: false
+  },
+  {
+    name: "SocialNetworks",
     embedded: false
   },
   {
     name: "Venue",
+    embedded: false
+  },
+  {
+    name: "Coordinates",
     embedded: false
   }
 ];
