@@ -9,14 +9,13 @@ type Query {
 
 type Mutation {
   createEvent(name: String!): Event
-  updateEvent(
-    eventId: String!
-    name: String
-    talks: [ID!]
-    venue: VenueInput
-    timeStart: Int
-    timeEnd: Int
-  ): Event
+  # updateEvent(
+  #   eventId: String!
+  #   name: String
+  #   talks: [ID!]
+  #   venue: VenueInput
+  #   timeStart: Int
+  # ): Event
   createTalk(data: TalkInput!): Talk
   updateTalk(data: TalkInput!): Talk
   attendEvent(eventId: String!): Event
@@ -46,24 +45,44 @@ type Event {
   name: String!
   attendees: [User!]!
   organizer: User!
-  talks: [Talk!]
+  agenda: [EventActivity!]
   venue: Venue
   timeStart: Int
-  timeEnd: Int
+}
+
+type EventActivity {
+  id: ID!
+  order: Int!
+  activity: Activity!
+}
+
+type Activity {
+  id: ID!
+  type: ActivityType!
+  title: String!
+  description: String!
+  length: Int!
+  createdAt: Int!
+  updatedAt: Int!
+}
+
+enum ActivityType {
+  TALK
+  BASIC
+}
+
+type Talk {
+  id: ID!
+  activity: Activity!
+  speaker: User!
+  remarks: String
+  createdAt: Int!
+  updatedAt: Int!
 }
 
 type AuthPayload {
   token: String
   user: User
-}
-
-type Talk {
-  id: ID!
-  title: String!
-  description: String!
-  speaker: User!
-  length: Int!
-  remarks: String
 }
 
 input TalkInput {
@@ -75,6 +94,7 @@ input TalkInput {
 }
 
 type SocialProfile {
+  id: ID!
   type: SocialNetworks!
   value: String!
 }

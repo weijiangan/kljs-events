@@ -15,20 +15,38 @@ type Event {
   name: String!
   attendees: [User!]! @relation(name: "Attendees")
   organizer: User! @relation(name: "Organizer")
-  talks: [Talk!]!
+  agenda: [EventActivity!]!
   venue: Venue
   timeStart: Int
-  timeEnd: Int
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
 }
 
-type Talk {
+type EventActivity {
   id: ID! @id
+  order: Int!
+  activity: Activity!
+}
+
+type Activity {
+  id: ID! @id
+  type: ActivityType!
   title: String!
   description: String!
-  speaker: User!
   length: Int!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+enum ActivityType {
+  TALK,
+  BASIC
+}
+
+type Talk {
+  id: ID! @id
+  activity: Activity!
+  speaker: User!
   remarks: String
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
@@ -38,8 +56,6 @@ type SocialProfile {
   id: ID! @id
   type: SocialNetworks!
   value: String! @unique
-  createdAt: DateTime! @createdAt
-  updatedAt: DateTime! @updatedAt
 }
 
 enum SocialNetworks {
@@ -54,6 +70,10 @@ type Venue {
   id: ID! @id
   name: String!
   address: String!
+  postcode: String!
+  city: String!
+  state: String!
+  country: String!
   googPlaceId: String
   coords: Coordinates
   createdAt: DateTime! @createdAt
@@ -64,6 +84,4 @@ type Coordinates {
   id: ID! @id
   x: Float!
   y: Float!
-  createdAt: DateTime! @createdAt
-  updatedAt: DateTime! @updatedAt
 }
