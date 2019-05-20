@@ -1,0 +1,131 @@
+.container {
+  margin: auto;
+  max-width: 768px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.logo {
+  font-weight: 700;
+  letter-spacing: 0.3rem;
+  font-size: 2.5rem;
+  text-shadow: 0 3px 10px black;
+  opacity: 0.9;
+}
+
+.flex {
+  display: flex;
+}
+
+.flexCenter {
+  composes: flex;
+  align-items: center;
+}
+
+.topBar {
+  color: white;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.7), transparent);
+  width: 100vw;
+  composes: flex;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  padding: 1rem;
+  z-index: 2;
+  /* box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.7); */
+}
+
+.heroTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.1;
+  margin-top: 0;
+}
+
+.iconBullet {
+  opacity: 0.6;
+  width: 2rem;
+  flex: 0 0 auto;
+}
+
+.picture {
+  height: calc(100vh - 280px);
+  max-height: 400px;
+  background: linear-gradient(
+      180deg,
+      transparent,
+      rgba(0, 0, 0, 0.4) 75%,
+      rgba(0, 0, 0, 0.8) 100%
+    ),
+    top center / cover no-repeat url("../../assets/kl.jpg");
+}
+
+.topButton {
+  border: none;
+  color: white;
+  font-size: 0.9rem;
+  padding: 0.7rem 1.25rem;
+  border-radius: 1.2rem;
+  background-image: linear-gradient(340deg, #ff8a00, #da1b60);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+  text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+  letter-spacing: 0.03rem;
+}
+
+.row {
+  composes: flex;
+  padding: 1rem;
+  z-index: 3;
+}
+
+.col {
+  box-sizing: border-box;
+  padding: 0.1rem 0.1rem;
+  flex: 1 0 33.333%;
+  display: flex;
+  justify-content: center;
+}
+
+.tab {
+  padding: 0.4rem 0.8rem;
+  border-radius: 1rem;
+}
+
+.tabActive {
+  composes: tab;
+  color: white;
+  background-color: var(--dark);
+}
+
+.timelineTitle {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0 0 0.2rem;
+}
+
+.timelineSubtitle {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.2;
+  margin: 0;
+  opacity: 0.6;
+}
+
+.bigEventCard {
+  max-width: 800px;
+  margin: 6rem auto 4rem auto;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2), 0 7px 25px rgba(0, 0, 0, 0.15),
+    0 0 0 1px rgba(0, 0, 0, 0.07);
+  overflow: hidden;
+  background-color: rgb(234, 218, 91);
+  padding-bottom: 3rem;
+  border-radius: 8px;
+}
+
+@media (max-width: 576px) {
+  .bigEventCard {
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+}
