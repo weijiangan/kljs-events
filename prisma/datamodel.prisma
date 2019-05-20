@@ -32,7 +32,7 @@ type Activity {
   id: ID! @id
   type: ActivityType!
   title: String!
-  description: String!
+  description: String
   length: Int!
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt

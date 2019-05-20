@@ -60,7 +60,7 @@ type Activity {
   id: ID!
   type: ActivityType!
   title: String!
-  description: String!
+  description: String
   length: Int!
   createdAt: Int!
   updatedAt: Int!
