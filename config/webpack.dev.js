@@ -6,6 +6,7 @@ module.exports = {
   devtool: "eval",
   entry: ["webpack-hot-middleware/client", "./src/client/index.js"],
   resolve: {
+    extensions: [".mjs", ".js", ".jsx"],
     alias: {
       "react-dom": "@hot-loader/react-dom"
     }
@@ -21,10 +22,28 @@ module.exports = {
         oneOf: [
           {
             exclude: /node_modules|packages/,
-            test: /\.js$/,
+            test: /\.jsx?$/,
             loader: "babel-loader",
             options: {
-              cacheDirectory: true
+              compact: true,
+              cacheDirectory: true,
+              babelrc: false,
+              plugins: [
+                "@babel/plugin-syntax-dynamic-import",
+                ["@babel/plugin-proposal-class-properties", { loose: false }]
+              ],
+              presets: [
+                [
+                  "@babel/preset-env",
+                  {
+                    targets: {
+                      browsers: ["last 2 Chrome versions"]
+                    },
+                    modules: false
+                  }
+                ],
+                "@babel/preset-react"
+              ]
             }
           },
           {
