@@ -7,7 +7,7 @@ module.exports = {
   id: ID!
   type: ActivityType!
   title: String!
-  description: String!
+  description: String
   length: Int!
   createdAt: DateTime!
   updatedAt: DateTime!
@@ -23,7 +23,7 @@ input ActivityCreateInput {
   id: ID
   type: ActivityType!
   title: String!
-  description: String!
+  description: String
   length: Int!
 }
 
@@ -58,7 +58,7 @@ type ActivityPreviousValues {
   id: ID!
   type: ActivityType!
   title: String!
-  description: String!
+  description: String
   length: Int!
   createdAt: DateTime!
   updatedAt: DateTime!

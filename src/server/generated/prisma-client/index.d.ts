@@ -1080,7 +1080,7 @@ export interface ActivityCreateInput {
   id?: Maybe<ID_Input>;
   type: ActivityType;
   title: String;
-  description: String;
+  description?: Maybe<String>;
   length: Int;
 }
 
@@ -1812,7 +1812,7 @@ export interface Activity {
   id: ID_Output;
   type: ActivityType;
   title: String;
-  description: String;
+  description?: String;
   length: Int;
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
@@ -2715,7 +2715,7 @@ export interface ActivityPreviousValues {
   id: ID_Output;
   type: ActivityType;
   title: String;
-  description: String;
+  description?: String;
   length: Int;
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
