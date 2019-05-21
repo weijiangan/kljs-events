@@ -7,5 +7,6 @@ function activity(parent, args, context) {
 }
 
 module.exports = {
-  speaker
+  speaker,
+  activity
 };
