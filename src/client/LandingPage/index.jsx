@@ -191,7 +191,7 @@ const Timeline = ({ event }) => (
 );
 
 const Layout = ({ children }) => (
-  <div>
+  <div className={styles.root}>
     <div className={styles.topBar}>
       <div className={styles.logo}>KLJS</div>
       <div className={styles.flexCenter}>
