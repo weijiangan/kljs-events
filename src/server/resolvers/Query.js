@@ -10,8 +10,13 @@ function talks(parent, args, context, info) {
   return context.prisma.talks();
 }
 
+function talk(parent, args, context, info) {
+  return context.prisma.talk({ id: args.id });
+}
+
 module.exports = {
   events,
   users,
-  talks
+  talks,
+  talk
 };
