@@ -25,6 +25,14 @@ var models = [
     embedded: false
   },
   {
+    name: "Link",
+    embedded: false
+  },
+  {
+    name: "LinkType",
+    embedded: false
+  },
+  {
     name: "Talk",
     embedded: false
   },

@@ -62,8 +62,22 @@ type Activity {
   title: String!
   description: String
   length: Int!
+  links: [Link!]!
   createdAt: Int!
   updatedAt: Int!
+}
+
+type Link {
+  id: ID!
+  type: LinkType!
+  url: String!
+  description: String
+}
+
+enum LinkType {
+  YOUTUBE
+  SLIDES
+  OTHER
 }
 
 enum ActivityType {

@@ -9,6 +9,7 @@ module.exports = {
   title: String!
   description: String
   length: Int!
+  links(where: LinkWhereInput, orderBy: LinkOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Link!]
   createdAt: DateTime!
   updatedAt: DateTime!
 }
@@ -25,6 +26,7 @@ input ActivityCreateInput {
   title: String!
   description: String
   length: Int!
+  links: LinkCreateManyInput
 }
 
 input ActivityCreateOneInput {
@@ -92,6 +94,7 @@ input ActivityUpdateDataInput {
   title: String
   description: String
   length: Int
+  links: LinkUpdateManyInput
 }
 
 input ActivityUpdateInput {
@@ -99,6 +102,7 @@ input ActivityUpdateInput {
   title: String
   description: String
   length: Int
+  links: LinkUpdateManyInput
 }
 
 input ActivityUpdateManyMutationInput {
@@ -175,6 +179,9 @@ input ActivityWhereInput {
   length_lte: Int
   length_gt: Int
   length_gte: Int
+  links_every: LinkWhereInput
+  links_some: LinkWhereInput
+  links_none: LinkWhereInput
   createdAt: DateTime
   createdAt_not: DateTime
   createdAt_in: [DateTime!]
@@ -213,6 +220,10 @@ type AggregateEvent {
 }
 
 type AggregateEventActivity {
+  count: Int!
+}
+
+type AggregateLink {
   count: Int!
 }
 
@@ -689,6 +700,238 @@ input EventWhereUniqueInput {
   id: ID
 }
 
+type Link {
+  id: ID!
+  type: LinkType!
+  url: String!
+  description: String
+}
+
+type LinkConnection {
+  pageInfo: PageInfo!
+  edges: [LinkEdge]!
+  aggregate: AggregateLink!
+}
+
+input LinkCreateInput {
+  id: ID
+  type: LinkType!
+  url: String!
+  description: String
+}
+
+input LinkCreateManyInput {
+  create: [LinkCreateInput!]
+  connect: [LinkWhereUniqueInput!]
+}
+
+type LinkEdge {
+  node: Link!
+  cursor: String!
+}
+
+enum LinkOrderByInput {
+  id_ASC
+  id_DESC
+  type_ASC
+  type_DESC
+  url_ASC
+  url_DESC
+  description_ASC
+  description_DESC
+}
+
+type LinkPreviousValues {
+  id: ID!
+  type: LinkType!
+  url: String!
+  description: String
+}
+
+input LinkScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  type: LinkType
+  type_not: LinkType
+  type_in: [LinkType!]
+  type_not_in: [LinkType!]
+  url: String
+  url_not: String
+  url_in: [String!]
+  url_not_in: [String!]
+  url_lt: String
+  url_lte: String
+  url_gt: String
+  url_gte: String
+  url_contains: String
+  url_not_contains: String
+  url_starts_with: String
+  url_not_starts_with: String
+  url_ends_with: String
+  url_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  AND: [LinkScalarWhereInput!]
+  OR: [LinkScalarWhereInput!]
+  NOT: [LinkScalarWhereInput!]
+}
+
+type LinkSubscriptionPayload {
+  mutation: MutationType!
+  node: Link
+  updatedFields: [String!]
+  previousValues: LinkPreviousValues
+}
+
+input LinkSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: LinkWhereInput
+  AND: [LinkSubscriptionWhereInput!]
+  OR: [LinkSubscriptionWhereInput!]
+  NOT: [LinkSubscriptionWhereInput!]
+}
+
+enum LinkType {
+  YOUTUBE
+  SLIDES
+  OTHER
+}
+
+input LinkUpdateDataInput {
+  type: LinkType
+  url: String
+  description: String
+}
+
+input LinkUpdateInput {
+  type: LinkType
+  url: String
+  description: String
+}
+
+input LinkUpdateManyDataInput {
+  type: LinkType
+  url: String
+  description: String
+}
+
+input LinkUpdateManyInput {
+  create: [LinkCreateInput!]
+  update: [LinkUpdateWithWhereUniqueNestedInput!]
+  upsert: [LinkUpsertWithWhereUniqueNestedInput!]
+  delete: [LinkWhereUniqueInput!]
+  connect: [LinkWhereUniqueInput!]
+  set: [LinkWhereUniqueInput!]
+  disconnect: [LinkWhereUniqueInput!]
+  deleteMany: [LinkScalarWhereInput!]
+  updateMany: [LinkUpdateManyWithWhereNestedInput!]
+}
+
+input LinkUpdateManyMutationInput {
+  type: LinkType
+  url: String
+  description: String
+}
+
+input LinkUpdateManyWithWhereNestedInput {
+  where: LinkScalarWhereInput!
+  data: LinkUpdateManyDataInput!
+}
+
+input LinkUpdateWithWhereUniqueNestedInput {
+  where: LinkWhereUniqueInput!
+  data: LinkUpdateDataInput!
+}
+
+input LinkUpsertWithWhereUniqueNestedInput {
+  where: LinkWhereUniqueInput!
+  update: LinkUpdateDataInput!
+  create: LinkCreateInput!
+}
+
+input LinkWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  type: LinkType
+  type_not: LinkType
+  type_in: [LinkType!]
+  type_not_in: [LinkType!]
+  url: String
+  url_not: String
+  url_in: [String!]
+  url_not_in: [String!]
+  url_lt: String
+  url_lte: String
+  url_gt: String
+  url_gte: String
+  url_contains: String
+  url_not_contains: String
+  url_starts_with: String
+  url_not_starts_with: String
+  url_ends_with: String
+  url_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  AND: [LinkWhereInput!]
+  OR: [LinkWhereInput!]
+  NOT: [LinkWhereInput!]
+}
+
+input LinkWhereUniqueInput {
+  id: ID
+}
+
 scalar Long
 
 type Mutation {
@@ -716,6 +959,12 @@ type Mutation {
   upsertEventActivity(where: EventActivityWhereUniqueInput!, create: EventActivityCreateInput!, update: EventActivityUpdateInput!): EventActivity!
   deleteEventActivity(where: EventActivityWhereUniqueInput!): EventActivity
   deleteManyEventActivities(where: EventActivityWhereInput): BatchPayload!
+  createLink(data: LinkCreateInput!): Link!
+  updateLink(data: LinkUpdateInput!, where: LinkWhereUniqueInput!): Link
+  updateManyLinks(data: LinkUpdateManyMutationInput!, where: LinkWhereInput): BatchPayload!
+  upsertLink(where: LinkWhereUniqueInput!, create: LinkCreateInput!, update: LinkUpdateInput!): Link!
+  deleteLink(where: LinkWhereUniqueInput!): Link
+  deleteManyLinks(where: LinkWhereInput): BatchPayload!
   createSocialProfile(data: SocialProfileCreateInput!): SocialProfile!
   updateSocialProfile(data: SocialProfileUpdateInput!, where: SocialProfileWhereUniqueInput!): SocialProfile
   updateManySocialProfiles(data: SocialProfileUpdateManyMutationInput!, where: SocialProfileWhereInput): BatchPayload!
@@ -772,6 +1021,9 @@ type Query {
   eventActivity(where: EventActivityWhereUniqueInput!): EventActivity
   eventActivities(where: EventActivityWhereInput, orderBy: EventActivityOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [EventActivity]!
   eventActivitiesConnection(where: EventActivityWhereInput, orderBy: EventActivityOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): EventActivityConnection!
+  link(where: LinkWhereUniqueInput!): Link
+  links(where: LinkWhereInput, orderBy: LinkOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Link]!
+  linksConnection(where: LinkWhereInput, orderBy: LinkOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): LinkConnection!
   socialProfile(where: SocialProfileWhereUniqueInput!): SocialProfile
   socialProfiles(where: SocialProfileWhereInput, orderBy: SocialProfileOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [SocialProfile]!
   socialProfilesConnection(where: SocialProfileWhereInput, orderBy: SocialProfileOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SocialProfileConnection!
@@ -990,6 +1242,7 @@ type Subscription {
   coordinates(where: CoordinatesSubscriptionWhereInput): CoordinatesSubscriptionPayload
   event(where: EventSubscriptionWhereInput): EventSubscriptionPayload
   eventActivity(where: EventActivitySubscriptionWhereInput): EventActivitySubscriptionPayload
+  link(where: LinkSubscriptionWhereInput): LinkSubscriptionPayload
   socialProfile(where: SocialProfileSubscriptionWhereInput): SocialProfileSubscriptionPayload
   talk(where: TalkSubscriptionWhereInput): TalkSubscriptionPayload
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload

@@ -7,6 +7,7 @@ const Event = require("./resolvers/Event");
 const Talk = require("./resolvers/Talk");
 const User = require("./resolvers/User");
 const Venue = require("./resolvers/Venue");
+const Activity = require("./resolvers/Activity");
 const EventActivity = require("./resolvers/EventActivity");
 const devServer = require("./dev-server");
 
@@ -18,6 +19,7 @@ const resolvers = {
   Talk,
   User,
   Venue,
+  Activity,
   EventActivity
 };
 
