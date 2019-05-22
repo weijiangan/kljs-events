@@ -185,8 +185,9 @@ const Timeline = ({ event }) => (
       <h2>Agenda</h2>
     </div>
     <VerticalTimeline>
-      {event.agenda.map(({ activity }, index) => (
+      {event.agenda.map(({ activity }) => (
         <VerticalTimelineElement
+          key={activity.id}
           date={format(new Date(activity.time * 1000), "h:mm A")}
           iconStyle={{
             background: "rgb(33, 150, 243)",
