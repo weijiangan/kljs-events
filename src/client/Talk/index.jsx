@@ -18,6 +18,7 @@ const GET_TALK = gql`
         }
       }
       speaker {
+        id
         name
         email
         socials {
