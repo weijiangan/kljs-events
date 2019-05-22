@@ -20,6 +20,7 @@ router.use(webpackHotMiddleware(compiler));
 router.use("/", express.static(path.join(__dirname, "..", "..", "dist")));
 
 router.get("*", (req, res, next) => {
+  if (req.url === "/graphql") return next();
   res.sendFile(
     "index.html",
     { root: path.join(__dirname, "..", "..", "dist") },
