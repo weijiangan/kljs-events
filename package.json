@@ -39,6 +39,8 @@
     "@babel/preset-env": "^7.4.3",
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-stage-2": "^7.0.0",
+    "@graphql-codegen/cli": "^1.2.0",
+    "@graphql-codegen/fragment-matcher": "^1.2.0",
     "babel-jest": "^24.7.0",
     "babel-loader": "^8.0.5",
     "babel-plugin-dynamic-import-node": "^2.2.0",
