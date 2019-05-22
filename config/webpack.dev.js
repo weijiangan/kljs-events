@@ -3,7 +3,7 @@ const webpack = require("webpack");
 
 module.exports = {
   mode: "development",
-  devtool: "eval",
+  devtool: "cheap-module-source-map",
   entry: ["webpack-hot-middleware/client", "./src/client/index.js"],
   resolve: {
     extensions: [".mjs", ".js", ".jsx"],
@@ -73,7 +73,11 @@ module.exports = {
       "process.env.NODE_ENV": JSON.stringify("development"),
       "process.env.BABEL_ENV": JSON.stringify("development")
     }),
+    new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin()
-  ]
+  ],
+  performance: {
+    hints: false
+  }
 };
