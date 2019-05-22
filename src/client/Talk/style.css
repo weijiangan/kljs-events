@@ -3,3 +3,15 @@
   margin: auto;
   padding: 0 1.5rem;
 }
+
+.ytEmbed {
+  position: relative;
+  height: 0;
+  padding-bottom: 56.25%;
+}
+
+.ytEmbed iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
