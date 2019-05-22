@@ -28,11 +28,27 @@ const GET_LATEST_EVENT = gql`
       agenda {
         order
         activity {
-          id
-          type
-          title
-          description
-          length
+          ... on Activity {
+            id
+            type
+            title
+            description
+            length
+          }
+          ... on Talk {
+            id
+            remarks
+            speaker {
+              id
+              name
+            }
+            activity {
+              type
+              title
+              description
+              length
+            }
+          }
         }
       }
     }
@@ -76,12 +92,24 @@ const EventFetcher = ({ children }) => (
     {({ loading, error, data }) => {
       if (loading) return <p>Loading...</p>;
       if (error) return <p>Error: {error}</p>;
+
       const event = data.events[0];
       let tally = event.timeStart;
-      event.agenda.forEach(({ activity }) => {
+
+      const newAgenda = event.agenda.map((item, index) => {
+        let { activity, ...rest } = item;
+
+        if (activity.type !== "BASIC" && activity.activity) {
+          const { activity: nested, ...rest } = activity;
+          activity = { ...rest, ...nested };
+        }
+
         activity.time = tally;
         tally = activity.time + activity.length * 60;
+        return { ...rest, activity };
       });
+
+      event.agenda = newAgenda;
       event.timeEnd = tally;
 
       return children(event);
@@ -173,9 +201,7 @@ const Timeline = ({ event }) => (
             <h3 className={styles.timelineTitle}>{activity.title}</h3>
           )}
           {activity.type === "TALK" ? (
-            <Link
-              to={`activity/${activity.speaker ? activity.speaker.id : ""}`}
-            >
+            <Link to={`user/${activity.speaker ? activity.speaker.id : ""}`}>
               <h4 className={styles.timelineSubtitle}>
                 {activity.speaker ? activity.speaker.name : "Unkown speaker"}
               </h4>
