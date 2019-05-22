@@ -9,6 +9,7 @@ const User = require("./resolvers/User");
 const Venue = require("./resolvers/Venue");
 const Activity = require("./resolvers/Activity");
 const EventActivity = require("./resolvers/EventActivity");
+const AllActivity = require("./resolvers/AllActivity");
 const devServer = require("./dev-server");
 
 const resolvers = {
@@ -20,7 +21,8 @@ const resolvers = {
   User,
   Venue,
   Activity,
-  EventActivity
+  EventActivity,
+  AllActivity
 };
 
 const server = new GraphQLServer({

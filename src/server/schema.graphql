@@ -50,10 +50,12 @@ type Event {
   timeStart: Int
 }
 
+union AllActivity = Activity | Talk
+
 type EventActivity {
   id: ID!
   order: Int!
-  activity: Activity!
+  activity: AllActivity!
 }
 
 type Activity {
