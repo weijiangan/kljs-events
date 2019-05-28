@@ -11,6 +11,7 @@ html {
 *:before,
 *:after {
   box-sizing: inherit;
+  line-height: inherit;
 }
 
 body {
@@ -19,6 +20,7 @@ body {
   background-color: var(--gray);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
     Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  line-height: 1.34;
 }
 
 a {
