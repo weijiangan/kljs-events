@@ -9,6 +9,7 @@ import {
   VerticalTimelineElement
 } from "react-vertical-timeline-component";
 import "!style-loader!css-loader!react-vertical-timeline-component/style.min.css";
+import { googleMapsUrlify } from "../shared";
 import styles from "./style.css";
 
 const GET_LATEST_EVENT = gql`
@@ -144,6 +145,7 @@ const NavMenu = () => (
 const EventInfo = ({ event }) => {
   const dateStart = new Date(event.timeStart * 1000);
   const dateEnd = new Date(event.timeEnd * 1000);
+  const mapsUrl = googleMapsUrlify(event.venue.address.replace(/\n/g, ""));
   return (
     <div className={styles.container}>
       <h1 className={styles.heroTitle}>{event.name}</h1>
@@ -167,7 +169,14 @@ const EventInfo = ({ event }) => {
           <FontAwesomeIcon icon={["fas", "map-marker-alt"]} />
         </div>
         <div>
-          <div>{event.venue.name}</div>
+          <a
+            style={{}}
+            href={mapsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {event.venue.name}
+          </a>
           <div
             dangerouslySetInnerHTML={{
               __html: event.venue.address.replace(/\n/g, "<br/>")
