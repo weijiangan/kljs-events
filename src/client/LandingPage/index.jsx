@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, forwardRef } from "react";
 import { Query, Mutation } from "react-apollo";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -69,25 +69,29 @@ const FUCK = gql`
   }
 `;
 
-const Content = () => (
-  <Layout>
-    <EventFetcher>
-      {event => (
-        <>
-          <div className={styles.cardContainer}>
-            <div className={styles.bigEventCard}>
-              <div className={styles.picture} />
-              <div className={styles.hero} />
-              <NavMenu />
-              <EventInfo event={event} />
+const Content = () => {
+  const supportSecRef = useRef(null);
+  return (
+    <Layout reff={supportSecRef}>
+      <EventFetcher>
+        {event => (
+          <>
+            <div className={styles.cardContainer}>
+              <div className={styles.bigEventCard}>
+                <div className={styles.picture} />
+                <div className={styles.hero} />
+                <NavMenu />
+                <EventInfo event={event} />
+              </div>
             </div>
-          </div>
-          <Timeline event={event} />
-        </>
-      )}
-    </EventFetcher>
-  </Layout>
-);
+            <Timeline event={event} />
+          </>
+        )}
+      </EventFetcher>
+      <SupportUs ref={supportSecRef} />
+    </Layout>
+  );
+};
 
 const EventFetcher = ({ children }) => (
   <Query query={GET_LATEST_EVENT}>
@@ -218,12 +222,57 @@ const Timeline = ({ event }) => (
   </div>
 );
 
-const Layout = ({ children }) => (
+const SupportUs = forwardRef((props, ref) => (
+  <div
+    ref={ref}
+    style={{ padding: "2rem 0", backgroundColor: "#da1b60", color: "white" }}
+  >
+    <div className={styles.container}>
+      <h2>Support Us!</h2>
+      <p>
+        As of now, we are organizing these monthly-meetups solely on our own
+        efforts, and we have neither any sources of funding nor our own venue.
+        If you enjoy our meetups and you wish to make it better in any way, here
+        are a few ways you can help us:
+      </p>
+      <div className={styles.flex}>
+        <div className={styles.iconBullet}>
+          <FontAwesomeIcon icon={["fas", "pizza-slice"]} />
+        </div>
+        <div>The meal is on you!</div>
+      </div>
+      <div className={styles.flex}>
+        <div className={styles.iconBullet}>
+          <FontAwesomeIcon icon={["fas", "building"]} />
+        </div>
+        <div>Host us!</div>
+      </div>
+      <div className={styles.flex}>
+        <div className={styles.iconBullet}>
+          <FontAwesomeIcon icon={["fas", "comments"]} />
+        </div>
+        <div>Tell your friends!</div>
+      </div>
+      <div className={styles.flex}>
+        <div className={styles.iconBullet}>
+          <FontAwesomeIcon icon={["fas", "child"]} />
+        </div>
+        <div>You tell us!</div>
+      </div>
+    </div>
+  </div>
+));
+
+const Layout = ({ reff, children }) => (
   <div>
     <div className={styles.topBar}>
       <div className={styles.logo}>KLJS</div>
       <div className={styles.flexCenter}>
-        <button type="button" className={styles.topButton}>
+        <button
+          type="button"
+          className={styles.topButton}
+          onClick={() => reff.current.scrollIntoView({ behavior: "smooth" })}
+        >
           Support us!
         </button>
       </div>

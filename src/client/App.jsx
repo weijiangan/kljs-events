@@ -4,14 +4,32 @@ import { ApolloProvider } from "react-apollo";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faClock, faCalendar } from "@fortawesome/free-regular-svg-icons";
-import { faMapMarkerAlt, faUser } from "@fortawesome/free-solid-svg-icons";
+import {
+  faMapMarkerAlt,
+  faUser,
+  faPizzaSlice,
+  faBuilding,
+  faComments,
+  faEnvelope,
+  faChild
+} from "@fortawesome/free-solid-svg-icons";
 import { client } from "./ApolloClient";
 import "./app.css";
 
 const LandingPage = lazy(() => import("./LandingPage"));
 const TalkPage = lazy(() => import("./Talk"));
 
-library.add(faClock, faCalendar, faMapMarkerAlt, faUser);
+library.add(
+  faClock,
+  faCalendar,
+  faMapMarkerAlt,
+  faUser,
+  faPizzaSlice,
+  faBuilding,
+  faComments,
+  faEnvelope,
+  faChild
+);
 
 const App = () => (
   <ApolloProvider client={client}>
