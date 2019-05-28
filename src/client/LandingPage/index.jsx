@@ -160,7 +160,7 @@ const EventInfo = ({ event }) => {
       </div>
       <div className={styles.flex}>
         <div className={styles.iconBullet}>
-          <FontAwesomeIcon icon={["fas", "map-marked-alt"]} />
+          <FontAwesomeIcon icon={["fas", "map-marker-alt"]} />
         </div>
         <div>
           <div>{event.venue.name}</div>
