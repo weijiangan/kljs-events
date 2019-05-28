@@ -74,11 +74,13 @@ const Content = () => (
     <EventFetcher>
       {event => (
         <>
-          <div className={styles.bigEventCard}>
-            <div className={styles.picture} />
-            <div className={styles.hero} />
-            <NavMenu />
-            <EventInfo event={event} />
+          <div className={styles.cardContainer}>
+            <div className={styles.bigEventCard}>
+              <div className={styles.picture} />
+              <div className={styles.hero} />
+              <NavMenu />
+              <EventInfo event={event} />
+            </div>
           </div>
           <Timeline event={event} />
         </>
@@ -177,7 +179,6 @@ const Timeline = ({ event }) => (
   <div
     style={{
       boxSizing: "content-box",
-      backgroundColor: "var(--gray)",
       padding: "2rem 0"
     }}
   >
@@ -218,7 +219,7 @@ const Timeline = ({ event }) => (
 );
 
 const Layout = ({ children }) => (
-  <div className={styles.root}>
+  <div>
     <div className={styles.topBar}>
       <div className={styles.logo}>KLJS</div>
       <div className={styles.flexCenter}>
