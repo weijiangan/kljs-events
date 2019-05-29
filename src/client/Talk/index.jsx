@@ -80,7 +80,7 @@ const Page = ({ match }) => (
           </div>
           <h2>Overview</h2>
           <p>{talk.activity.description}</p>
-          {ytLinks.length ? (
+          {ytLinks.length > 0 && (
             <>
               <h2>Video</h2>
               {ytLinks.map(link => (
@@ -92,10 +92,8 @@ const Page = ({ match }) => (
                 </>
               ))}
             </>
-          ) : (
-            undefined
           )}
-          {slidesLinks.length ? (
+          {slidesLinks.length > 0 && (
             <>
               <h2>Link to slides</h2>
               <ol>
@@ -106,8 +104,6 @@ const Page = ({ match }) => (
                 ))}
               </ol>
             </>
-          ) : (
-            undefined
           )}
         </div>
       );
