@@ -14,7 +14,7 @@ import styles from "./style.css";
 
 const GET_LATEST_EVENT = gql`
   {
-    events {
+    latestEvent {
       name
       timeStart
       venue {
@@ -100,7 +100,7 @@ const EventFetcher = ({ children }) => (
       if (loading) return <p>Loading...</p>;
       if (error) return <p>Error: {error}</p>;
 
-      const event = data.events[0];
+      const event = data.latestEvent;
       let tally = event.timeStart;
 
       const newAgenda = event.agenda.map((item, index) => {
