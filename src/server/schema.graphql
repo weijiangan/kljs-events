@@ -5,6 +5,7 @@ type Query {
   user(id: ID!): User
   talks: [Talk!]!
   talk(id: ID!): Talk
+  latestEvent: Event
 }
 
 type Mutation {
