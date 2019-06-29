@@ -18,6 +18,7 @@ import "./app.css";
 
 const LandingPage = lazy(() => import("./LandingPage"));
 const TalkPage = lazy(() => import("./Talk"));
+const EventPage = lazy(() => import("./Events"));
 
 library.add(
   faClock,
@@ -37,6 +38,7 @@ const App = () => (
       <Suspense fallback={null}>
         <Switch>
           <Route path="/talk/:id" component={TalkPage} />
+          <Route path="/events" component={EventPage} />
           <Route exact path="/" component={LandingPage} />
         </Switch>
       </Suspense>

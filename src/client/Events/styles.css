@@ -1,0 +1,26 @@
+.container {
+  composes: container from "../Talk/style.css";
+}
+
+.eventDesc {
+  display: flex;
+  flex-wrap: wrap;
+  opacity: 0.6;
+}
+
+.eventDesc > *:not(:last-child)::after {
+  content: "•";
+  padding: 0 0.5rem;
+}
+
+.eventName {
+  font-weight: 500;
+}
+
+.eventList {
+  line-height: 1.6;
+}
+
+.eventList > li {
+  margin-bottom: 1rem;
+}
