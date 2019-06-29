@@ -103,18 +103,20 @@ const EventFetcher = ({ children }) => (
       const event = data.latestEvent;
       let tally = event.timeStart;
 
-      const newAgenda = event.agenda.map((item, index) => {
-        let { activity, ...rest } = item;
+      const newAgenda = event.agenda
+        .sort((a, b) => a.order - b.order)
+        .map((item, index) => {
+          let { activity, ...rest } = item;
 
-        if (activity.type !== "BASIC" && activity.activity) {
-          const { activity: nested, ...rest } = activity;
-          activity = { ...rest, ...nested };
-        }
+          if (activity.type !== "BASIC" && activity.activity) {
+            const { activity: nested, ...rest } = activity;
+            activity = { ...rest, ...nested };
+          }
 
-        activity.time = tally;
-        tally = activity.time + activity.length * 60;
-        return { ...rest, activity };
-      });
+          activity.time = tally;
+          tally = activity.time + activity.length * 60;
+          return { ...rest, activity };
+        });
 
       event.agenda = newAgenda;
       event.timeEnd = tally;
