@@ -132,13 +132,13 @@ const NavMenu = () => (
       <div className={styles.tabActive}>Next Event</div>
     </div>
     <div className={styles.col}>
-      <Link to="events">
-        <div className={styles.tab}>Past Events</div>
+      <Link to="events" className={styles.tab}>
+        Past Events
       </Link>
     </div>
     <div className={styles.col}>
-      <Link to="/talks">
-        <div className={styles.tab}>Talks</div>
+      <Link to="/talks" className={styles.tab}>
+        Talks
       </Link>
     </div>
   </div>
