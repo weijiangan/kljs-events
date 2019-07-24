@@ -62,20 +62,22 @@ const Page = () => (
         if (error) return <div>Error: {error}</div>;
         return (
           <ol className={styles.eventList}>
-            {data.events.reverse().map(event => {
-              const date = new Date(event.timeStart * 1000);
-              return (
-                <li>
-                  <Link to={`/event/${event.id}`}>
-                    <span className={styles.eventName}>{event.name}</span>
-                  </Link>
-                  <div className={styles.eventDesc}>
-                    <div>{format(date, "D MMM YYYY")}</div>
-                    <div>{event.venue.name}</div>
-                  </div>
-                </li>
-              );
-            })}
+            {data.events
+              .sort((a, b) => b.timeStart - a.timeStart)
+              .map(event => {
+                const date = new Date(event.timeStart * 1000);
+                return (
+                  <li>
+                    <Link to={`/event/${event.id}`}>
+                      <span className={styles.eventName}>{event.name}</span>
+                    </Link>
+                    <div className={styles.eventDesc}>
+                      <div>{format(date, "D MMM YYYY")}</div>
+                      <div>{event.venue.name}</div>
+                    </div>
+                  </li>
+                );
+              })}
           </ol>
         );
       }}
