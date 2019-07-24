@@ -1,0 +1,18 @@
+{
+  "__schema": {
+    "types": [
+      {
+        "kind": "UNION",
+        "name": "AllActivity",
+        "possibleTypes": [
+          {
+            "name": "Activity"
+          },
+          {
+            "name": "Talk"
+          }
+        ]
+      }
+    ]
+  }
+}
