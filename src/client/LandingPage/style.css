@@ -87,6 +87,9 @@
 }
 
 .row {
+  margin: auto;
+  max-width: 600px;
+  justify-content: space-around;
   composes: flex;
   padding: 1rem;
   z-index: 3;

@@ -128,19 +128,13 @@ const EventFetcher = ({ children }) => (
 
 const NavMenu = () => (
   <div className={styles.row}>
-    <div className={styles.col}>
-      <div className={styles.tabActive}>Next Event</div>
-    </div>
-    <div className={styles.col}>
-      <Link to="events" className={styles.tab}>
-        Past Events
-      </Link>
-    </div>
-    <div className={styles.col}>
-      <Link to="/talks" className={styles.tab}>
-        Talks
-      </Link>
-    </div>
+    <div className={styles.tabActive}>Next Event</div>
+    <Link to="events" className={styles.tab}>
+      Past Events
+    </Link>
+    <Link to="/talks" className={styles.tab}>
+      Talks
+    </Link>
   </div>
 );
 
