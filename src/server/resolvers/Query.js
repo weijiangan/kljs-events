@@ -39,6 +39,7 @@ async function latestEvent(parent, args, context, info) {
 
 module.exports = {
   events,
+  event,
   users,
   talks,
   talk,
