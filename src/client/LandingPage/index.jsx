@@ -230,7 +230,11 @@ const Timeline = ({ event }) => (
 const SupportUs = forwardRef((props, ref) => (
   <div
     ref={ref}
-    style={{ padding: "2rem 0", backgroundColor: "#da1b60", color: "white" }}
+    style={{
+      padding: "2rem 0",
+      backgroundColor: "#da1b60",
+      color: "rgba(255, 255, 255, 0.9)"
+    }}
   >
     <div className={styles.container}>
       <h2>Support Us!</h2>
