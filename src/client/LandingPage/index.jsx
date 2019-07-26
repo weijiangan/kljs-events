@@ -268,6 +268,21 @@ const SupportUs = forwardRef((props, ref) => (
   </div>
 ));
 
+const Footer = () => (
+  <div className={styles.footer}>
+    <div className={styles.container}>
+      <p>
+        KLJS was founded by @ernsheong. It is currently being organized by
+        @weijiangan and @tevanraj.
+      </p>
+      <p>
+        KLJS expects all speakers and attendees to follow the JSConf code of
+        conduct.
+      </p>
+    </div>
+  </div>
+);
+
 const Layout = ({ reff, children }) => (
   <div>
     <div className={styles.topBar}>
@@ -283,6 +298,7 @@ const Layout = ({ reff, children }) => (
       </div>
     </div>
     {children}
+    <Footer />
   </div>
 );
 
