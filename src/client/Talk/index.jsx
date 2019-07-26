@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Layout from "../Layout";
 import styles from "./style.css";
 
 const GET_TALK = gql`
@@ -68,7 +69,7 @@ const Page = ({ match }) => (
       return (
         <div
           className={styles.container}
-          style={{ paddingTop: "2rem", paddingBottom: "2rem" }}
+          style={{ paddingTop: "7rem", paddingBottom: "2rem", flex: 1 }}
         >
           <h1>{talk.activity.title}</h1>
           <div style={{ display: "flex", alignItems: "center" }}>
@@ -111,4 +112,8 @@ const Page = ({ match }) => (
   </Query>
 );
 
-export default Page;
+export default props => (
+  <Layout>
+    <Page {...props} />
+  </Layout>
+);

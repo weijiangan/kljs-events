@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import { format } from "date-fns";
+import Layout from "../Layout";
 import styles from "./styles.css";
 
 const QUERY = gql`
@@ -51,38 +52,40 @@ const QUERY = gql`
 `;
 
 const Page = () => (
-  <div
-    className={styles.container}
-    style={{ paddingTop: "2rem", paddingBottom: "2rem" }}
-  >
-    <h1>All Events</h1>
-    <Query query={QUERY}>
-      {({ loading, error, data }) => {
-        if (loading) return <div>Loading...</div>;
-        if (error) return <div>Error: {error}</div>;
-        return (
-          <ol className={styles.eventList}>
-            {data.events
-              .sort((a, b) => b.timeStart - a.timeStart)
-              .map(event => {
-                const date = new Date(event.timeStart * 1000);
-                return (
-                  <li>
-                    <Link to={`/event/${event.id}`}>
-                      <span className={styles.eventName}>{event.name}</span>
-                    </Link>
-                    <div className={styles.eventDesc}>
-                      <div>{format(date, "D MMM YYYY")}</div>
-                      <div>{event.venue.name}</div>
-                    </div>
-                  </li>
-                );
-              })}
-          </ol>
-        );
-      }}
-    </Query>
-  </div>
+  <Layout>
+    <div
+      className={styles.container}
+      style={{ paddingTop: "7rem", paddingBottom: "2rem", flex: 1 }}
+    >
+      <h1>All Events</h1>
+      <Query query={QUERY}>
+        {({ loading, error, data }) => {
+          if (loading) return <div>Loading...</div>;
+          if (error) return <div>Error: {error}</div>;
+          return (
+            <ol className={styles.eventList}>
+              {data.events
+                .sort((a, b) => b.timeStart - a.timeStart)
+                .map(event => {
+                  const date = new Date(event.timeStart * 1000);
+                  return (
+                    <li>
+                      <Link to={`/event/${event.id}`}>
+                        <span className={styles.eventName}>{event.name}</span>
+                      </Link>
+                      <div className={styles.eventDesc}>
+                        <div>{format(date, "D MMM YYYY")}</div>
+                        <div>{event.venue.name}</div>
+                      </div>
+                    </li>
+                  );
+                })}
+            </ol>
+          );
+        }}
+      </Query>
+    </div>
+  </Layout>
 );
 
 export default Page;
