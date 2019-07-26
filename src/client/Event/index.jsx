@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Query, Mutation } from "react-apollo";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,6 +10,7 @@ import {
 } from "react-vertical-timeline-component";
 import "!style-loader!css-loader!react-vertical-timeline-component/style.min.css";
 import { googleMapsUrlify } from "../shared";
+import Layout from "../Layout";
 import styles from "./style.css";
 
 const GET_EVENT = gql`
@@ -210,41 +211,5 @@ const Timeline = ({ event }) => (
     </div>
   </div>
 );
-
-const Footer = () => <div />;
-
-const Layout = ({ children }) => {
-  const [size, setSize] = useState(16);
-
-  const aaa = () => {
-    if (window.scrollY < 101) {
-      const a = 16 - window.scrollY * 0.04;
-      setSize(a);
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener("optimizedScroll", aaa, false);
-
-    return () => {
-      window.removeEventListener("optimizedScroll", aaa, false);
-    };
-  }, [children]);
-
-  return (
-    <div>
-      <div className={styles.topBar} style={{ fontSize: size }}>
-        <div className={styles.logo}>KLJS</div>
-        <div className={styles.flexCenter}>
-          <button type="button" className={styles.topButton}>
-            Support us!
-          </button>
-        </div>
-      </div>
-      {children}
-      <Footer />
-    </div>
-  );
-};
 
 export default Content;
