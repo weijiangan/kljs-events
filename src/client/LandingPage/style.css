@@ -1,8 +1,12 @@
+:root {
+  --padding: 1.5rem;
+}
+
 .container {
   margin: auto;
   max-width: 768px;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  padding-left: var(--padding);
+  padding-right: var(--padding);
 }
 
 .logo {
