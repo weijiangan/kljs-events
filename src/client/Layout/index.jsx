@@ -10,6 +10,11 @@ const Layout = ({ children }) => (
   </>
 );
 
+const navItems = [
+  { title: "Events", url: "/events" },
+  { title: "Talks", url: "/talks" }
+];
+
 const TopBar = ({ children }) => {
   const [size, setSize] = useState(16);
 
@@ -30,9 +35,18 @@ const TopBar = ({ children }) => {
 
   return (
     <div className={styles.topBar} style={{ fontSize: size }}>
-      <Link to="/">
-        <div className={styles.logo}>KLJS</div>
-      </Link>
+      <div className={styles.flexCenter}>
+        <Link to="/">
+          <div className={styles.logo}>KLJS</div>
+        </Link>
+        <ul className={styles.nav}>
+          {navItems.map(item => (
+            <li>
+              <Link to={item.url}>{item.title}</Link>
+            </li>
+          ))}
+        </ul>
+      </div>
       <div className={styles.flexCenter}>
         <button type="button" className={styles.topButton}>
           Support us!

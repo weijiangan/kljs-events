@@ -57,3 +57,18 @@
 .topButton:hover {
   background-position: 0%;
 }
+
+.nav {
+  list-style: none;
+  display: flex;
+  margin: 0 0 0 3rem;
+  padding: 0;
+}
+
+.nav > li {
+  font-size: calc(0.7em + 9px);
+}
+
+.nav > li:not(:last-child) {
+  margin-right: 2rem;
+}
