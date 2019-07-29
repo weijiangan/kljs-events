@@ -73,11 +73,24 @@ const Page = ({ match }) => (
         >
           <h1>{talk.activity.title}</h1>
           <div style={{ display: "flex", alignItems: "center" }}>
-            <FontAwesomeIcon icon={["fas", "user"]} />
-            <Link to={`/user/${talk.speaker.id}`}>
-              <div>{talk.speaker.name}</div>
-            </Link>
-            <div>{talk.activity.length} mins</div>
+            <div className={styles.userPicture}>
+              {talk.speaker.image ? (
+                <img src={talk.speaker.image} style={{ width: "100%" }} />
+              ) : (
+                <div className={styles.placeHolderBg}>
+                  <FontAwesomeIcon
+                    className={styles.placeHolder}
+                    icon={["fas", "user"]}
+                  />
+                </div>
+              )}
+            </div>
+            <div>
+              <Link to={`/user/${talk.speaker.id}`}>
+                <div>{talk.speaker.name}</div>
+              </Link>
+              <div>{talk.activity.length} mins</div>
+            </div>
           </div>
           <h2>Overview</h2>
           <p>{talk.activity.description}</p>
