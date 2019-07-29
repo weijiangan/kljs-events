@@ -53,8 +53,8 @@ const ytLinkToEmbed = link => {
 const Page = ({ match }) => (
   <Query query={GET_TALK} variables={{ id: match.params.id }}>
     {({ loading, error, data }) => {
-      if (loading) return <p>"Loading..."</p>;
-      if (error) return <p>"Error"</p>;
+      if (loading) return <p>Loading...</p>;
+      if (error) return <p>Error</p>;
 
       const { talk } = data;
 
@@ -67,10 +67,7 @@ const Page = ({ match }) => (
       );
 
       return (
-        <div
-          className={styles.container}
-          style={{ paddingTop: "7rem", paddingBottom: "2rem", flex: 1 }}
-        >
+        <>
           <h1>{talk.activity.title}</h1>
           <div style={{ display: "flex", alignItems: "center" }}>
             <div className={styles.userPicture}>
@@ -119,7 +116,7 @@ const Page = ({ match }) => (
               </ol>
             </>
           )}
-        </div>
+        </>
       );
     }}
   </Query>
@@ -127,6 +124,11 @@ const Page = ({ match }) => (
 
 export default props => (
   <Layout>
-    <Page {...props} />
+    <div
+      className={styles.container}
+      style={{ paddingTop: "7rem", paddingBottom: "2rem", flex: 1 }}
+    >
+      <Page {...props} />
+    </div>
   </Layout>
 );
