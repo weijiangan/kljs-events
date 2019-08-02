@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Layout from "../Layout";
 import styles from "./style.css";
 
 const GET_TALK = gql`
@@ -123,9 +122,7 @@ const Page = ({ match }) => (
 );
 
 export default props => (
-  <Layout>
-    <div className={styles.container}>
-      <Page {...props} />
-    </div>
-  </Layout>
+  <div className={styles.container}>
+    <Page {...props} />
+  </div>
 );

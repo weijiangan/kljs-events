@@ -10,7 +10,6 @@ import {
 } from "react-vertical-timeline-component";
 import "!style-loader!css-loader!react-vertical-timeline-component/style.min.css";
 import { googleMapsUrlify } from "../shared";
-import Layout from "../Layout";
 import styles from "./style.css";
 
 const GET_EVENT = gql`
@@ -59,16 +58,14 @@ const GET_EVENT = gql`
 
 const Content = ({ match }) => {
   return (
-    <Layout>
-      <EventFetcher eventId={match.params.id}>
-        {event => (
-          <>
-            <EventInfo event={event} />
-            <Timeline event={event} />
-          </>
-        )}
-      </EventFetcher>
-    </Layout>
+    <EventFetcher eventId={match.params.id}>
+      {event => (
+        <>
+          <EventInfo event={event} />
+          <Timeline event={event} />
+        </>
+      )}
+    </EventFetcher>
   );
 };
 

@@ -14,6 +14,7 @@ import {
   faChild
 } from "@fortawesome/free-solid-svg-icons";
 import { client } from "./ApolloClient";
+import Layout from "./Layout";
 import "./app.css";
 
 const LandingPage = lazy(() => import("./LandingPage"));
@@ -38,10 +39,12 @@ const App = () => (
     <Router>
       <Suspense fallback={null}>
         <Switch>
-          <Route path="/talk/:id" component={TalkPage} />
-          <Route path="/event/:id" component={EventPage} />
-          <Route path="/events" component={EventsPage} />
           <Route exact path="/" component={LandingPage} />
+          <Layout>
+            <Route path="/talk/:id" component={TalkPage} />
+            <Route path="/event/:id" component={EventPage} />
+            <Route path="/events" component={EventsPage} />
+          </Layout>
         </Switch>
       </Suspense>
     </Router>
