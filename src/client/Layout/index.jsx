@@ -39,6 +39,9 @@ const TopBar = ({ children }) => {
         <Link to="/">
           <div className={styles.logo}>KLJS</div>
         </Link>
+        <button className={styles.mobNavExpand}>
+          <div>∨</div>
+        </button>
         <ul className={styles.nav}>
           {navItems.map(item => (
             <li>

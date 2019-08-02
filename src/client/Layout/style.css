@@ -73,6 +73,35 @@
   margin-right: 2rem;
 }
 
+.mobNavExpand {
+  display: none;
+  background: rgb(82, 82, 77);
+  border: unset;
+  color: lightblue;
+  margin-left: 1rem;
+  border-radius: 50%;
+  height: 2.5em;
+  width: 2.5em;
+}
+
+.mobNavExpand:hover {
+  box-shadow: 0 0 0 1px rgb(165, 165, 169);
+}
+
+.mobNavExpand > div {
+  transform: scaleX(2);
+}
+
+@media (max-width: 576px) {
+  .nav {
+    display: none;
+  }
+
+  .mobNavExpand {
+    display: block;
+  }
+}
+
 .appContent {
   padding-top: 7rem;
   padding-bottom: 2rem;
