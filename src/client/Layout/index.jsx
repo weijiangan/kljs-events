@@ -5,7 +5,7 @@ import styles from "./style.css";
 const Layout = ({ children }) => (
   <>
     <TopBar />
-    {children}
+    <div className={styles.appContent}>{children}</div>
     <Footer />
   </>
 );

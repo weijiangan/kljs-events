@@ -124,10 +124,7 @@ const Page = ({ match }) => (
 
 export default props => (
   <Layout>
-    <div
-      className={styles.container}
-      style={{ paddingTop: "7rem", paddingBottom: "2rem", flex: 1 }}
-    >
+    <div className={styles.container}>
       <Page {...props} />
     </div>
   </Layout>

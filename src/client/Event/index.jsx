@@ -128,10 +128,7 @@ const EventInfo = ({ event }) => {
   const dateEnd = new Date(event.timeEnd * 1000);
   const mapsUrl = googleMapsUrlify(event.venue.address.replace(/\n/g, ""));
   return (
-    <div
-      className={styles.container}
-      style={{ paddingTop: "7rem", paddingBottom: "2rem" }}
-    >
+    <div className={styles.container}>
       <h1>{event.name}</h1>
       <div className={styles.flex} style={{ marginBottom: "0.75rem" }}>
         <div className={styles.iconBullet}>

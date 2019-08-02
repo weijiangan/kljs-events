@@ -72,3 +72,9 @@
 .nav > li:not(:last-child) {
   margin-right: 2rem;
 }
+
+.appContent {
+  padding-top: 7rem;
+  padding-bottom: 2rem;
+  flex: 1;
+}
