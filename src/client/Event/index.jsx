@@ -20,11 +20,9 @@ const GET_EVENT = gql`
       venue {
         name
         address
-        googPlaceId
-        coords {
-          x
-          y
-        }
+        city
+        state
+        postcode
       }
       agenda {
         order
@@ -160,6 +158,10 @@ const EventInfo = ({ event }) => {
               __html: event.venue.address.replace(/\n/g, "<br/>")
             }}
           />
+          <div>
+            {event.venue.postcode} {event.venue.city}
+          </div>
+          <div>{event.venue.state}</div>
         </div>
       </div>
     </div>
