@@ -2,9 +2,20 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { APP_SECRET, getUserId } = require("../utils");
 
+function getPwHash(password, password2) {
+  console.log("getting hash");
+  if (password != password2) {
+    throw new Error("password and confirm password do not match");
+  }
+  return new Promise(resolve => {
+    bcrypt.hash(password, 10).then(hash => resolve(hash));
+  });
+}
+
 async function signup(parent, args, context, info) {
-  const password = await bcrypt.hash(args.password, 10);
-  const user = await context.prisma.createUser({ ...args, password });
+  const { password, password2, ...rest } = args;
+  const pwHash = await getPwHash(password, password2);
+  const user = await context.prisma.createUser({ ...rest, password: pwHash });
   const token = jwt.sign({ userId: user.id }, APP_SECRET, { expiresIn: "1h" });
 
   return {
@@ -30,6 +41,23 @@ async function login(parent, args, context, info) {
     token,
     user
   };
+}
+
+async function changePassword(parent, args, context, info) {
+  const userId = getUserId(context);
+  const { password, password2, oldpassword } = args;
+  const user = await context.prisma.user({ id: userId });
+  const valid = await bcrypt.compare(oldpassword, user.password);
+  if (!valid) {
+    throw new Error("Invalid password");
+  }
+
+  const pwHash = await getPwHash(password, password2);
+  await context.prisma.updateUser({
+    data: { password: pwHash },
+    where: { id: userId }
+  });
+  return 1;
 }
 
 function createEvent(parent, args, context, info) {
@@ -85,5 +113,6 @@ module.exports = {
   createEvent,
   attendEvent,
   // updateEvent,
-  createTalk
+  createTalk,
+  changePassword
 };

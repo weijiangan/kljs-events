@@ -22,6 +22,11 @@ type Mutation {
   attendEvent(eventId: String!): Event
   signup(name: String!, email: String!, password: String!): AuthPayload
   login(email: String!, password: String!): AuthPayload
+  changePassword(
+    oldpassword: String!
+    password: String!
+    password2: String!
+  ): Int
 }
 
 type Subscription {
