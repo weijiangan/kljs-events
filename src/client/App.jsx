@@ -21,6 +21,7 @@ const LandingPage = lazy(() => import("./LandingPage"));
 const TalkPage = lazy(() => import("./Talk"));
 const EventsPage = lazy(() => import("./Events"));
 const EventPage = lazy(() => import("./Event"));
+const Login = lazy(() => import("./Login"));
 
 library.add(
   faClock,
@@ -41,9 +42,12 @@ const App = () => (
         <Switch>
           <Route exact path="/" component={LandingPage} />
           <Layout>
-            <Route path="/talk/:id" component={TalkPage} />
-            <Route path="/event/:id" component={EventPage} />
-            <Route path="/events" component={EventsPage} />
+            <Switch>
+              <Route path="/talk/:id" component={TalkPage} />
+              <Route path="/event/:id" component={EventPage} />
+              <Route path="/events" component={EventsPage} />
+              <Route path="/login" component={Login} />
+            </Switch>
           </Layout>
         </Switch>
       </Suspense>

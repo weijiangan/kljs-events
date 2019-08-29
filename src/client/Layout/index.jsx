@@ -51,6 +51,13 @@ const TopBar = ({ children }) => {
         </ul>
       </div>
       <div className={styles.flexCenter}>
+        <ul className={styles.nav}>
+          <li>
+            <Link style={{ paddingRight: "1rem" }} to="/login">
+              Login
+            </Link>
+          </li>
+        </ul>
         <button type="button" className={styles.topButton}>
           Support us!
         </button>
