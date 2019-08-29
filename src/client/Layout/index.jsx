@@ -43,8 +43,8 @@ const TopBar = ({ children }) => {
           <div>∨</div>
         </button>
         <ul className={styles.nav}>
-          {navItems.map(item => (
-            <li>
+          {navItems.map((item, index) => (
+            <li key={index}>
               <Link to={item.url}>{item.title}</Link>
             </li>
           ))}
