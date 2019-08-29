@@ -3,7 +3,7 @@ const webpack = require("webpack");
 
 module.exports = {
   mode: "development",
-  devtool: "cheap-module-source-map",
+  devtool: "cheap-module-eval-source-map",
   entry: ["webpack-hot-middleware/client", "./src/client/index.js"],
   resolve: {
     extensions: [".mjs", ".js", ".jsx"],
