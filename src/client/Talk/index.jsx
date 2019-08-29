@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Query } from "react-apollo";
+import { useQuery } from "@apollo/react-hooks";
 import gql from "graphql-tag";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from "./style.css";
@@ -49,77 +49,73 @@ const ytLinkToEmbed = link => {
   );
 };
 
-const Page = ({ match }) => (
-  <Query query={GET_TALK} variables={{ id: match.params.id }}>
-    {({ loading, error, data }) => {
-      if (loading) return <p>Loading...</p>;
-      if (error) return <p>Error</p>;
+const Page = ({ match }) => {
+  const { loading, error, data } = useQuery(GET_TALK, {
+    variables: { id: match.params.id }
+  });
 
-      const { talk } = data;
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error</p>;
 
-      const ytLinks = talk.activity.links.filter(
-        link => link.type === "YOUTUBE"
-      );
+  const { talk } = data;
 
-      const slidesLinks = talk.activity.links.filter(
-        link => link.type === "SLIDES"
-      );
+  const ytLinks = talk.activity.links.filter(link => link.type === "YOUTUBE");
 
-      return (
+  const slidesLinks = talk.activity.links.filter(
+    link => link.type === "SLIDES"
+  );
+
+  return (
+    <>
+      <h1>{talk.activity.title}</h1>
+      <div style={{ display: "flex", alignItems: "center" }}>
+        <div className={styles.userPicture}>
+          {talk.speaker.image ? (
+            <img src={talk.speaker.image} style={{ width: "100%" }} />
+          ) : (
+            <div className={styles.placeHolderBg}>
+              <FontAwesomeIcon
+                className={styles.placeHolder}
+                icon={["fas", "user"]}
+              />
+            </div>
+          )}
+        </div>
+        <div>
+          <Link to={`/user/${talk.speaker.id}`}>
+            <div>{talk.speaker.name}</div>
+          </Link>
+          <div>{talk.activity.length} mins</div>
+        </div>
+      </div>
+      <h2>Overview</h2>
+      <p>{talk.activity.description}</p>
+      {ytLinks.length > 0 && (
         <>
-          <h1>{talk.activity.title}</h1>
-          <div style={{ display: "flex", alignItems: "center" }}>
-            <div className={styles.userPicture}>
-              {talk.speaker.image ? (
-                <img src={talk.speaker.image} style={{ width: "100%" }} />
-              ) : (
-                <div className={styles.placeHolderBg}>
-                  <FontAwesomeIcon
-                    className={styles.placeHolder}
-                    icon={["fas", "user"]}
-                  />
-                </div>
-              )}
-            </div>
-            <div>
-              <Link to={`/user/${talk.speaker.id}`}>
-                <div>{talk.speaker.name}</div>
-              </Link>
-              <div>{talk.activity.length} mins</div>
-            </div>
-          </div>
-          <h2>Overview</h2>
-          <p>{talk.activity.description}</p>
-          {ytLinks.length > 0 && (
+          <h2>Video</h2>
+          {ytLinks.map(link => (
             <>
-              <h2>Video</h2>
-              {ytLinks.map(link => (
-                <>
-                  <div className={styles.ytEmbed}>
-                    {ytLinkToEmbed(link.url)}
-                  </div>
-                  <p>{link.description}</p>
-                </>
-              ))}
+              <div className={styles.ytEmbed}>{ytLinkToEmbed(link.url)}</div>
+              <p>{link.description}</p>
             </>
-          )}
-          {slidesLinks.length > 0 && (
-            <>
-              <h2>Link to slides</h2>
-              <ol>
-                {slidesLinks.map(link => (
-                  <li>
-                    <a href={link.url}>{link.url}</a> &mdash; {link.description}
-                  </li>
-                ))}
-              </ol>
-            </>
-          )}
+          ))}
         </>
-      );
-    }}
-  </Query>
-);
+      )}
+      {slidesLinks.length > 0 && (
+        <>
+          <h2>Link to slides</h2>
+          <ol>
+            {slidesLinks.map(link => (
+              <li>
+                <a href={link.url}>{link.url}</a> &mdash; {link.description}
+              </li>
+            ))}
+          </ol>
+        </>
+      )}
+    </>
+  );
+};
 
 export default props => (
   <div className={styles.container}>

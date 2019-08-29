@@ -1,6 +1,6 @@
 import React, { lazy, Suspense } from "react";
 import { hot } from "react-hot-loader/root";
-import { ApolloProvider } from "react-apollo";
+import { ApolloProvider } from "@apollo/react-hooks";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faClock, faCalendar } from "@fortawesome/free-regular-svg-icons";

@@ -1,5 +1,5 @@
 import React from "react";
-import { Query, Mutation } from "react-apollo";
+import { useQuery } from "@apollo/react-hooks";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { format } from "date-fns";
@@ -67,38 +67,38 @@ const Content = ({ match }) => {
   );
 };
 
-const EventFetcher = ({ eventId, children }) => (
-  <Query query={GET_EVENT} variables={{ eventId: eventId }}>
-    {({ loading, error, data }) => {
-      if (loading) return <p>Loading...</p>;
-      if (error) return <p>Error: {error}</p>;
+const EventFetcher = ({ eventId, children }) => {
+  const { loading, error, data } = useQuery(GET_EVENT, {
+    variables: { eventId }
+  });
 
-      const { event } = data;
-      console.log(event);
-      let tally = event.timeStart;
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error}</p>;
 
-      const newAgenda = event.agenda
-        .sort((a, b) => a.order - b.order)
-        .map((item, index) => {
-          let { activity, ...rest } = item;
+  const { event } = data;
+  console.log(event);
+  let tally = event.timeStart;
 
-          if (activity.type !== "BASIC" && activity.activity) {
-            const { activity: nested, ...rest } = activity;
-            activity = { ...rest, ...nested };
-          }
+  const newAgenda = event.agenda
+    .sort((a, b) => a.order - b.order)
+    .map((item, index) => {
+      let { activity, ...rest } = item;
 
-          activity.time = tally;
-          tally = activity.time + activity.length * 60;
-          return { ...rest, activity };
-        });
+      if (activity.type !== "BASIC" && activity.activity) {
+        const { activity: nested, ...rest } = activity;
+        activity = { ...rest, ...nested };
+      }
 
-      event.agenda = newAgenda;
-      event.timeEnd = tally;
+      activity.time = tally;
+      tally = activity.time + activity.length * 60;
+      return { ...rest, activity };
+    });
 
-      return children(event);
-    }}
-  </Query>
-);
+  event.agenda = newAgenda;
+  event.timeEnd = tally;
+
+  return children(event);
+};
 
 const NavMenu = () => (
   <div className={styles.row}>

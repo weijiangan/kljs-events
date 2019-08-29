@@ -1,5 +1,5 @@
 import React, { useRef, forwardRef } from "react";
-import { Query, Mutation } from "react-apollo";
+import { useQuery } from "@apollo/react-hooks";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { format } from "date-fns";
@@ -54,20 +54,6 @@ const GET_LATEST_EVENT = gql`
   }
 `;
 
-const FUCK = gql`
-  mutation Test($eventId: String!, $venue: VenueInput!) {
-    updateEvent(eventId: $eventId, venue: $venue) {
-      id
-      name
-      venue {
-        id
-        name
-        address
-      }
-    }
-  }
-`;
-
 const Content = () => {
   const supportSecRef = useRef(null);
   return (
@@ -92,37 +78,35 @@ const Content = () => {
   );
 };
 
-const EventFetcher = ({ children }) => (
-  <Query query={GET_LATEST_EVENT}>
-    {({ loading, error, data }) => {
-      if (loading) return <p>Loading...</p>;
-      if (error) return <p>Error: {error}</p>;
+const EventFetcher = ({ children }) => {
+  const { loading, error, data } = useQuery(GET_LATEST_EVENT);
 
-      const event = data.latestEvent;
-      let tally = event.timeStart;
+  if (error) return <p>Error: {error}</p>;
+  if (loading) return <p>Loading...</p>;
 
-      const newAgenda = event.agenda
-        .sort((a, b) => a.order - b.order)
-        .map((item, index) => {
-          let { activity, ...rest } = item;
+  const event = data.latestEvent;
+  let tally = event.timeStart;
 
-          if (activity.type !== "BASIC" && activity.activity) {
-            const { activity: nested, ...rest } = activity;
-            activity = { ...rest, ...nested };
-          }
+  const newAgenda = event.agenda
+    .sort((a, b) => a.order - b.order)
+    .map((item, index) => {
+      let { activity, ...rest } = item;
 
-          activity.time = tally;
-          tally = activity.time + activity.length * 60;
-          return { ...rest, activity };
-        });
+      if (activity.type !== "BASIC" && activity.activity) {
+        const { activity: nested, ...rest } = activity;
+        activity = { ...rest, ...nested };
+      }
 
-      event.agenda = newAgenda;
-      event.timeEnd = tally;
+      activity.time = tally;
+      tally = activity.time + activity.length * 60;
+      return { ...rest, activity };
+    });
 
-      return children(event);
-    }}
-  </Query>
-);
+  event.agenda = newAgenda;
+  event.timeEnd = tally;
+
+  return children(event);
+};
 
 const NavMenu = () => (
   <div className={styles.row}>
