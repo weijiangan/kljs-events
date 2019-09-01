@@ -1,46 +1,56 @@
 import React, { useState, useCallback } from "react";
+import { useMutation } from "@apollo/react-hooks";
+import gql from "graphql-tag";
+import { useForm, Input } from "../useForm";
 import styles from "./style.css";
 
+const LOGIN = gql`
+  mutation login($email: String!, $password: String!) {
+    login(email: $email, password: $password) {
+      token
+    }
+  }
+`;
+
 function Login(props) {
-  const [form, setForm] = useState({
+  const [FormContext, getForm] = useForm({
     email: "",
     password: ""
   });
 
-  const handleChange = useCallback(
-    event => {
-      const { name, value } = event.target;
-      setForm(s => ({ ...s, [name]: value }));
-    },
-    [setForm]
-  );
+  const [login, { error }] = useMutation(LOGIN);
 
-  const handleSubmit = useCallback(event => {
-    event.preventDefault();
-  }, []);
+  const handleSubmit = useCallback(
+    async event => {
+      event.preventDefault();
+      try {
+        const { data } = await login({ variables: getForm() });
+        window.localStorage.setItem("token", data.login.token);
+      } catch (e) {}
+    },
+    [login]
+  );
 
   return (
     <div className={styles.container}>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label>Email address</label>
-          <input
-            type="email"
-            name="email"
-            value={form.value}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label>Password</label>
-          <input
-            type="password"
-            name="password"
-            value={form.value}
-            onChange={handleChange}
-          />
-        </div>
-        <input type="submit" value="Login" />
+        <FormContext>
+          <div>
+            <label>Email address</label>
+            <Input type="email" name="email" />
+          </div>
+          <div>
+            <label>Password</label>
+            <Input type="password" name="password" />
+          </div>
+          <input type="submit" value={"Login"} />
+          {error &&
+            error.graphQLErrors &&
+            error.graphQLErrors.map((err, index) => (
+              <div key={index}>{err.message}</div>
+            ))}
+          {error && error.networkError && <div>Please try again later</div>}
+        </FormContext>
       </form>
     </div>
   );
