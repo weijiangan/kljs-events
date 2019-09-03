@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import styles from "./style.css";
+import { GlobalState } from "../App";
 
 const Layout = ({ children }) => (
   <>
@@ -17,6 +18,7 @@ const navItems = [
 
 const TopBar = ({ children }) => {
   const [size, setSize] = useState(16);
+  const global = useContext(GlobalState);
 
   const aaa = () => {
     if (window.scrollY < 101) {
@@ -54,7 +56,7 @@ const TopBar = ({ children }) => {
         <ul className={styles.nav}>
           <li>
             <Link style={{ paddingRight: "1rem" }} to="/login">
-              Login
+              {global.token ? "Logout" : "Login"}
             </Link>
           </li>
         </ul>
