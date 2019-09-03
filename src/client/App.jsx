@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useState } from "react";
 import { hot } from "react-hot-loader/root";
 import { ApolloProvider } from "@apollo/react-hooks";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -23,6 +23,8 @@ const EventsPage = lazy(() => import("./Events"));
 const EventPage = lazy(() => import("./Event"));
 const Login = lazy(() => import("./Login"));
 
+const GlobalState = React.createContext({});
+
 library.add(
   faClock,
   faCalendar,
@@ -35,24 +37,30 @@ library.add(
   faChild
 );
 
-const App = () => (
-  <ApolloProvider client={client}>
-    <Router>
-      <Suspense fallback={null}>
-        <Switch>
-          <Route exact path="/" component={LandingPage} />
-          <Layout>
+const App = () => {
+  const [state, setState] = useState({ token: localStorage.getItem("token") });
+  return (
+    <ApolloProvider client={client}>
+      <GlobalState.Provider value={state}>
+        <Router>
+          <Suspense fallback={null}>
             <Switch>
-              <Route path="/talk/:id" component={TalkPage} />
-              <Route path="/event/:id" component={EventPage} />
-              <Route path="/events" component={EventsPage} />
-              <Route path="/login" component={Login} />
+              <Route exact path="/" component={LandingPage} />
+              <Layout>
+                <Switch>
+                  <Route path="/talk/:id" component={TalkPage} />
+                  <Route path="/event/:id" component={EventPage} />
+                  <Route path="/events" component={EventsPage} />
+                  <Route path="/login" component={Login} />
+                </Switch>
+              </Layout>
             </Switch>
-          </Layout>
-        </Switch>
-      </Suspense>
-    </Router>
-  </ApolloProvider>
-);
+          </Suspense>
+        </Router>
+      </GlobalState.Provider>
+    </ApolloProvider>
+  );
+};
 
 export default hot(App);
+export { GlobalState };
