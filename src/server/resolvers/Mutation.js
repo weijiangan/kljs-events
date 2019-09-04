@@ -64,7 +64,9 @@ function createEvent(parent, args, context, info) {
   const userId = getUserId(context);
   return context.prisma.createEvent({
     name: args.name,
-    organizer: { connect: { id: userId } }
+    timeStart: args.timeStart,
+    organizer: { connect: { id: userId } },
+    venue: args.venue
   });
 }
 

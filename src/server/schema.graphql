@@ -9,7 +9,11 @@ type Query {
 }
 
 type Mutation {
-  createEvent(name: String!): Event
+  createEvent(
+    name: String!
+    timeStart: Int!
+    venue: VenueCreateOneInput!
+  ): Event
   # updateEvent(
   #   eventId: String!
   #   name: String
@@ -140,9 +144,18 @@ type Venue {
   coords: Coordinates
 }
 
-input VenueInput {
+input VenueCreateOneInput {
+  create: VenueCreateInput
+  connect: String
+}
+
+input VenueCreateInput {
   name: String!
   address: String!
+  postcode: String!
+  city: String!
+  state: String!
+  country: String!
   googPlaceId: String
   coords: CoordinatesInput
 }
