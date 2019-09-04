@@ -82,9 +82,9 @@ const Page = ({ match }) => {
           )}
         </div>
         <div>
-          <Link to={`/user/${talk.speaker.id}`}>
-            <div>{talk.speaker.name}</div>
-          </Link>
+          <div>
+            <Link to={`/user/${talk.speaker.id}`}>{talk.speaker.name}</Link>
+          </div>
           <div>{talk.activity.length} mins</div>
         </div>
       </div>

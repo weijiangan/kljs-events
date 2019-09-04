@@ -185,18 +185,20 @@ const Timeline = ({ event }) => (
             }}
           >
             {activity.type === "TALK" ? (
-              <Link to={`/talk/${activity.id}`}>
-                <h3 className={styles.timelineTitle}>{activity.title}</h3>
-              </Link>
+              <h3 className={styles.timelineTitle}>
+                <Link to={`/talk/${activity.id}`}>{activity.title}</Link>
+              </h3>
             ) : (
               <h3 className={styles.timelineTitle}>{activity.title}</h3>
             )}
             {activity.type === "TALK" ? (
-              <Link to={`/user/${activity.speaker ? activity.speaker.id : ""}`}>
-                <h4 className={styles.timelineSubtitle}>
+              <h4 className={styles.timelineSubtitle}>
+                <Link
+                  to={`/user/${activity.speaker ? activity.speaker.id : ""}`}
+                >
                   {activity.speaker ? activity.speaker.name : "Unkown speaker"}
-                </h4>
-              </Link>
+                </Link>
+              </h4>
             ) : (
               undefined
             )}
