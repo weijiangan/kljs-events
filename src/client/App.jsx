@@ -2,19 +2,9 @@ import React, { lazy, Suspense, useState } from "react";
 import { hot } from "react-hot-loader/root";
 import { ApolloProvider } from "@apollo/react-hooks";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { faClock, faCalendar } from "@fortawesome/free-regular-svg-icons";
-import {
-  faMapMarkerAlt,
-  faUser,
-  faPizzaSlice,
-  faBuilding,
-  faComments,
-  faEnvelope,
-  faChild
-} from "@fortawesome/free-solid-svg-icons";
 import { client } from "./ApolloClient";
 import Layout from "./Layout";
+import "./faLibrary";
 import "./app.css";
 
 const LandingPage = lazy(() => import("./LandingPage"));
@@ -25,18 +15,6 @@ const CreateEvent = lazy(() => import("./CreateEvent"));
 const Login = lazy(() => import("./Login"));
 
 const GlobalState = React.createContext({});
-
-library.add(
-  faClock,
-  faCalendar,
-  faMapMarkerAlt,
-  faUser,
-  faPizzaSlice,
-  faBuilding,
-  faComments,
-  faEnvelope,
-  faChild
-);
 
 const App = () => {
   const [state, setState] = useState({ token: localStorage.getItem("token") });
