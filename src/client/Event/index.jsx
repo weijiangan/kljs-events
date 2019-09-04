@@ -173,7 +173,7 @@ const Timeline = ({ event }) => (
     <div className={styles.container}>
       <h2>Agenda</h2>
     </div>
-    <div style={{ boxSizing: "content-box" }}>
+    <div>
       <VerticalTimeline>
         {event.agenda.map(({ activity }) => (
           <VerticalTimelineElement

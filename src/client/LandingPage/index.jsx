@@ -171,12 +171,7 @@ const EventInfo = ({ event }) => {
 };
 
 const Timeline = ({ event }) => (
-  <div
-    style={{
-      boxSizing: "content-box",
-      padding: "2rem 0"
-    }}
-  >
+  <div style={{ padding: "2rem 0" }}>
     <div className={styles.container}>
       <h2>Agenda</h2>
     </div>
