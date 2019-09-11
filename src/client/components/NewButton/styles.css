@@ -1,0 +1,21 @@
+.newButton {
+  font-size: 0.9rem;
+  padding: 0.5rem 0.8rem;
+  background: #71f171;
+  border: none;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 1px 0 #89ad88;
+  color: #36523b;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.newButton:hover {
+  border: none;
+  transform: scale(1.05);
+  box-shadow: 0 2px 4px 0 #89ad88;
+}
+
+.newButton > svg {
+  margin-right: 0.5rem;
+}

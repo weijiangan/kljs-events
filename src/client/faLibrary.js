@@ -9,7 +9,8 @@ import {
   faComments,
   faEnvelope,
   faChild,
-  faGlobeAsia
+  faGlobeAsia,
+  faPlusCircle
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -24,5 +25,6 @@ library.add(
   faChild,
   faTwitter,
   faGithub,
-  faGlobeAsia
+  faGlobeAsia,
+  faPlusCircle
 );
