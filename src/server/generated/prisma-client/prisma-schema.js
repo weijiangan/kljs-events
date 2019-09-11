@@ -1234,7 +1234,6 @@ input SocialProfileWhereInput {
 
 input SocialProfileWhereUniqueInput {
   id: ID
-  value: String
 }
 
 type Subscription {

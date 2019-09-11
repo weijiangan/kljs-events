@@ -69,7 +69,7 @@ type Talk {
 type SocialProfile {
   id: ID! @id
   type: SocialNetworks!
-  value: String! @unique
+  value: String!
 }
 
 enum SocialNetworks {

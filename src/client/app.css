@@ -44,5 +44,5 @@ a:hover {
 }
 
 a:visited {
-  color: unset;
+  /* color: unset; */
 }

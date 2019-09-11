@@ -1118,7 +1118,6 @@ export type LinkWhereUniqueInput = AtLeastOne<{
 
 export type SocialProfileWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
-  value?: Maybe<String>;
 }>;
 
 export type TalkWhereUniqueInput = AtLeastOne<{

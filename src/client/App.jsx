@@ -13,6 +13,7 @@ const EventsPage = lazy(() => import("./Events"));
 const EventPage = lazy(() => import("./Event"));
 const CreateEvent = lazy(() => import("./CreateEvent"));
 const Login = lazy(() => import("./Login"));
+const UserPage = lazy(() => import("./User"));
 
 const GlobalState = React.createContext({});
 
@@ -31,6 +32,7 @@ const App = () => {
                   <Route path="/event/create" component={CreateEvent} />
                   <Route path="/event/:id" component={EventPage} />
                   <Route path="/events" component={EventsPage} />
+                  <Route path="/user/:id" component={UserPage} />
                   <Route path="/login" component={Login} />
                 </Switch>
               </Layout>

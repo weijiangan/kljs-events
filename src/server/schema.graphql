@@ -43,6 +43,7 @@ type User {
   email: String!
   description: String
   socials: [SocialProfile!]!
+  talks: [Talk!]
 }
 
 input UserInput {

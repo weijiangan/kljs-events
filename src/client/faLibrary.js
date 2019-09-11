@@ -1,5 +1,6 @@
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faClock, faCalendar } from "@fortawesome/free-regular-svg-icons";
+import { faTwitter, faGithub } from "@fortawesome/free-brands-svg-icons";
 import {
   faMapMarkerAlt,
   faUser,
@@ -7,7 +8,8 @@ import {
   faBuilding,
   faComments,
   faEnvelope,
-  faChild
+  faChild,
+  faGlobeAsia
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -19,5 +21,8 @@ library.add(
   faBuilding,
   faComments,
   faEnvelope,
-  faChild
+  faChild,
+  faTwitter,
+  faGithub,
+  faGlobeAsia
 );

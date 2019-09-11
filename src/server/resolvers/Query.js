@@ -10,6 +10,10 @@ function users(parent, args, context, info) {
   return context.prisma.users();
 }
 
+function user(parent, args, context, info) {
+  return context.prisma.user({ id: args.id });
+}
+
 function talks(parent, args, context, info) {
   return context.prisma.talks();
 }
@@ -40,6 +44,7 @@ async function latestEvent(parent, args, context, info) {
 module.exports = {
   events,
   event,
+  user,
   users,
   talks,
   talk,

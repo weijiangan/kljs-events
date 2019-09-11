@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useQuery } from "@apollo/react-hooks";
 import gql from "graphql-tag";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import UserPicture from "../components/UserPicture";
 import styles from "./style.css";
 
 const GET_TALK = gql`
@@ -69,18 +70,7 @@ const Page = ({ match }) => {
     <>
       <h1>{talk.activity.title}</h1>
       <div style={{ display: "flex", alignItems: "center" }}>
-        <div className={styles.userPicture}>
-          {talk.speaker.image ? (
-            <img src={talk.speaker.image} style={{ width: "100%" }} />
-          ) : (
-            <div className={styles.placeHolderBg}>
-              <FontAwesomeIcon
-                className={styles.placeHolder}
-                icon={["fas", "user"]}
-              />
-            </div>
-          )}
-        </div>
+        <UserPicture picture={talk.speaker.image} />
         <div>
           <div>
             <Link to={`/user/${talk.speaker.id}`}>{talk.speaker.name}</Link>
