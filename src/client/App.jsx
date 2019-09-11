@@ -9,9 +9,11 @@ import "./app.css";
 
 const LandingPage = lazy(() => import("./LandingPage"));
 const TalkPage = lazy(() => import("./Talk"));
+const TalksPage = lazy(() => import("./Talks"));
 const EventsPage = lazy(() => import("./Events"));
 const EventPage = lazy(() => import("./Event"));
 const CreateEvent = lazy(() => import("./CreateEvent"));
+const CreateTalk = lazy(() => import("./CreateTalk"));
 const Login = lazy(() => import("./Login"));
 const UserPage = lazy(() => import("./User"));
 
@@ -28,8 +30,10 @@ const App = () => {
               <Route exact path="/" component={LandingPage} />
               <Layout>
                 <Switch>
+                  <Route path="/talk/new" component={CreateTalk} />
                   <Route path="/talk/:id" component={TalkPage} />
-                  <Route path="/event/create" component={CreateEvent} />
+                  <Route path="/talks" component={TalksPage} />
+                  <Route path="/event/new" component={CreateEvent} />
                   <Route path="/event/:id" component={EventPage} />
                   <Route path="/events" component={EventsPage} />
                   <Route path="/user/:id" component={UserPage} />

@@ -1,0 +1,38 @@
+.container {
+  padding: 0 2rem;
+}
+
+.row {
+  display: flex;
+  margin: 0 -0.75rem;
+}
+
+.col {
+  flex: 1 1 8.333%;
+  padding: 0 0.75rem;
+}
+
+.talkDesc {
+  display: flex;
+  flex-wrap: wrap;
+  opacity: 0.6;
+}
+
+.talkDesc > *:not(:last-child)::after {
+  content: "•";
+  padding: 0 0.5rem;
+}
+
+.talkName {
+  color: #e84663;
+  font-weight: 600;
+  margin: 0 0 0.25rem 0;
+}
+
+.talkList {
+  line-height: 1.6;
+}
+
+.talkList > li {
+  margin-bottom: 1rem;
+}
