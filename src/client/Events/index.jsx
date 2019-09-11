@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useQuery } from "@apollo/react-hooks";
 import gql from "graphql-tag";
 import { format } from "date-fns";
+import { NewButton } from "../components/NewButton";
 import styles from "./styles.css";
 import wb from "../whiteBox.css";
 
@@ -59,7 +60,16 @@ const Page = () => {
   return (
     <div className={styles.container}>
       <div className={wb.whiteBox}>
-        <h1>All Events</h1>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between"
+          }}
+        >
+          <h1>All Events</h1>
+          <NewButton href={`/event/new`}>New Event</NewButton>
+        </div>
         <ol className={styles.eventList}>
           {data.events
             .sort((a, b) => b.timeStart - a.timeStart)
