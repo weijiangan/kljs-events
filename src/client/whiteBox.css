@@ -2,8 +2,7 @@
   background-color: white;
   padding: 1.5rem;
   border-radius: 0.75rem;
-  box-shadow: 0 6px 10px #ddd;
-  margin: 2rem 0;
+  box-shadow: 0 0 0 1px #d6d6d6, 0 6px 10px #ddd;
 }
 
 .whiteBox input[type="text"],
