@@ -4,7 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start:dev": "node ./src/server/index.js"
+    "start:dev": "node ./src/server/index.js",
+    "build": "webpack -p --config config/webpack.prod.js"
   },
   "dependencies": {
     "@apollo/react-hooks": "^3.0.1",
