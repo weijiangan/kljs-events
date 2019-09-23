@@ -22,6 +22,7 @@
     "apollo-link-http": "^1.5.15",
     "babel-plugin-rewire": "^1.2.0",
     "bcryptjs": "^2.4.3",
+    "core-js": "^3.2.1",
     "date-fns": "^1.30.1",
     "graphql": "^14.5.4",
     "graphql-tag": "^2.10.1",
@@ -32,6 +33,7 @@
     "react-dom": "^16.9.0",
     "react-router-dom": "^5.0.1",
     "react-vertical-timeline-component": "^2.4.0",
+    "regenerator-runtime": "^0.13.3",
     "style-loader": "^1.0.0"
   },
   "devDependencies": {
