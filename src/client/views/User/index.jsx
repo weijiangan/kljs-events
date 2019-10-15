@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import { useQuery } from "@apollo/react-hooks";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import gql from "graphql-tag";
-import UserPicture from "../components/UserPicture";
-import wb from "../whiteBox.css";
-import layout from "../css/layout.css";
+import UserPicture from "../../components/UserPicture";
+import wb from "../../css/whiteBox.css";
+import layout from "../../css/layout.css";
 import styles from "./styles.css";
 
 const GET_USER = gql`

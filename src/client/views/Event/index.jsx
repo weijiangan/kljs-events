@@ -9,7 +9,7 @@ import {
   VerticalTimelineElement
 } from "react-vertical-timeline-component";
 import "!style-loader!css-loader!react-vertical-timeline-component/style.min.css";
-import { googleMapsUrlify } from "../shared";
+import { googleMapsUrlify } from "../../shared";
 import styles from "./style.css";
 
 const GET_EVENT = gql`

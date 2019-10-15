@@ -64,7 +64,7 @@
       rgba(0, 0, 0, 0.4) 75%,
       rgba(0, 0, 0, 0.8) 100%
     ),
-    top center / cover no-repeat url("../../assets/kl.jpg");
+    top center / cover no-repeat url("../../../assets/kl.jpg");
 }
 
 .topButton {

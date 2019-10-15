@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useQuery } from "@apollo/react-hooks";
 import gql from "graphql-tag";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import UserPicture from "../components/UserPicture";
+import UserPicture from "../../components/UserPicture";
 import styles from "./style.css";
 
 const GET_TALK = gql`
@@ -23,6 +23,7 @@ const GET_TALK = gql`
       speaker {
         id
         name
+        description
         email
         socials {
           type

@@ -2,10 +2,10 @@ import React, { lazy, Suspense, useState } from "react";
 import { hot } from "react-hot-loader/root";
 import { ApolloProvider } from "@apollo/react-hooks";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { client } from "./ApolloClient";
 import Layout from "./Layout";
-import "./faLibrary";
-import "./app.css";
+import { client } from "../ApolloClient";
+import "../faLibrary";
+import "../css/app.css";
 
 const LandingPage = lazy(() => import("./LandingPage"));
 const TalkPage = lazy(() => import("./Talk"));

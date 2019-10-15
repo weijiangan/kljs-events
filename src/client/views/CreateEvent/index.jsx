@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from "react";
 import gql from "graphql-tag";
-import { useForm, Input } from "../useForm.jsx";
+import { useForm, Input } from "../../hooks/useForm.jsx";
 
 const CREATE_EVENT = gql`
   mutation createEvent(

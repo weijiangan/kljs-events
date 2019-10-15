@@ -2,7 +2,7 @@ import "core-js/stable";
 import "regenerator-runtime/runtime";
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
+import App from "./views/App";
 
 var throttle = function(type, name, obj) {
   obj = obj || window;

@@ -4,9 +4,9 @@ import { useQuery } from "@apollo/react-hooks";
 import gql from "graphql-tag";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { format } from "date-fns";
-import { NewButton } from "../components/NewButton";
+import { NewButton } from "../../components/NewButton";
 import styles from "./styles.css";
-import wb from "../whiteBox.css";
+import wb from "../../css/whiteBox.css";
 
 const QUERY = gql`
   {

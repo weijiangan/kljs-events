@@ -1,9 +1,9 @@
 import React, { useState, useCallback } from "react";
 import { useMutation } from "@apollo/react-hooks";
 import gql from "graphql-tag";
-import { useForm, Input } from "../useForm";
+import { useForm, Input } from "../../hooks/useForm";
 import styles from "./style.css";
-import wb from "../whiteBox.css";
+import wb from "../../css/whiteBox.css";
 
 const LOGIN = gql`
   mutation login($email: String!, $password: String!) {
